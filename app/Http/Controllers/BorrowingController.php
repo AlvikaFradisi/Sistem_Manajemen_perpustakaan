@@ -2,64 +2,123 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Borrowing;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BorrowingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search');
+        $status = $request->input('status');
+
+        $borrowings = Borrowing::with('book')
+            ->when($search, function ($query, $search) {
+                return $query->where('member_name', 'like', "%{$search}%")
+                             ->orWhere('member_nim', 'like', "%{$search}%");
+            })
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('borrowings.index', compact('borrowings', 'search', 'status'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        // Hanya tampilkan buku yang stoknya lebih dari 0
+        $books = Book::where('stock', '>', 0)->get();
+        return view('borrowings.create', compact('books'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'book_id' => 'required|exists:books,id',
+            'member_name' => 'required|string|max:100',
+            'member_nim' => 'required|string|max:20',
+            'borrow_date' => 'required|date',
+            'due_date' => 'required|date|after_or_equal:borrow_date',
+        ]);
+
+        $book = Book::findOrFail($validated['book_id']);
+
+        if ($book->stock <= 0) {
+            return back()->withInput()->with('error', 'Stok buku ini sedang habis.');
+        }
+
+        // Set status default
+        $validated['status'] = 'Dipinjam';
+        $validated['fine'] = 0;
+
+        // Kurangi stok buku
+        $book->decrement('stock');
+
+        Borrowing::create($validated);
+
+        return redirect()->route('borrowings.index')->with('success', 'Data peminjaman berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Borrowing $borrowing)
     {
-        //
+        return view('borrowings.show', compact('borrowing'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Borrowing $borrowing)
     {
-        //
+        $books = Book::all();
+        return view('borrowings.edit', compact('borrowing', 'books'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Borrowing $borrowing)
     {
-        //
+        $validated = $request->validate([
+            'status' => 'required|in:Dipinjam,Dikembalikan,Terlambat',
+            'return_date' => 'nullable|date',
+            'fine' => 'nullable|numeric|min:0',
+        ]);
+
+        // Jika status berubah menjadi Dikembalikan atau Terlambat, dan sebelumnya Dipinjam
+        if ($borrowing->status === 'Dipinjam' && in_array($validated['status'], ['Dikembalikan', 'Terlambat'])) {
+            // Kembalikan stok buku
+            $borrowing->book->increment('stock');
+            
+            if (empty($validated['return_date'])) {
+                $validated['return_date'] = Carbon::now()->toDateString();
+            }
+
+            // Hitung denda jika terlambat dan denda belum diisi manual
+            if ($validated['status'] === 'Terlambat' && empty($validated['fine'])) {
+                $returnDate = Carbon::parse($validated['return_date']);
+                $dueDate = Carbon::parse($borrowing->due_date);
+                
+                if ($returnDate->gt($dueDate)) {
+                    $daysLate = $returnDate->diffInDays($dueDate);
+                    $finePerDay = 5000; // Contoh denda Rp 5000 per hari
+                    $validated['fine'] = $daysLate * $finePerDay;
+                }
+            }
+        }
+
+        $borrowing->update($validated);
+
+        return redirect()->route('borrowings.index')->with('success', 'Data peminjaman berhasil diperbarui!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Borrowing $borrowing)
     {
-        //
+        // Jika buku belum dikembalikan, kembalikan stoknya terlebih dahulu
+        if ($borrowing->status === 'Dipinjam') {
+            $borrowing->book->increment('stock');
+        }
+
+        $borrowing->delete();
+
+        return redirect()->route('borrowings.index')->with('success', 'Data peminjaman berhasil dihapus!');
     }
 }

@@ -31,6 +31,9 @@
                     
                     <!-- Menu -->
                     <div class="hidden md:flex space-x-1">
+                        <a href="{{ route('dashboard') }}" class="px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors {{ request()->routeIs('dashboard') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                            Dashboard
+                        </a>
                         <a href="{{ route('books.index') }}" class="px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors {{ request()->routeIs('books.*') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
                             Katalog Buku
                         </a>
