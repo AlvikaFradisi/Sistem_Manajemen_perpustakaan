@@ -1,17 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-    <div>
-        <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Data Peminjaman</h1>
-        <p class="text-slate-500 mt-1">Kelola data peminjaman dan pengembalian buku.</p>
+<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
+     style="background: linear-gradient(135deg, #3b0014 0%, #6b0f25 45%, #3d0500 100%); box-shadow: 0 20px 60px -10px rgba(225,29,72,0.5);">
+    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(225,29,72,0.5), transparent)"></div>
+    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(245,158,11,0.35), transparent)"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Data Peminjaman</h1>
+            <p class="text-rose-200/70 text-base font-light max-w-xl">Kelola data peminjaman dan pengembalian buku.</p>
+        </div>
+        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-rose-900 bg-gradient-to-r from-rose-200 to-rose-300 rounded-xl shadow-lg hover:from-rose-300 hover:to-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition-all hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Tambah Peminjaman
+        </a>
     </div>
-    <a href="{{ route('borrowings.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-        </svg>
-        Tambah Peminjaman
-    </a>
 </div>
 
 @if(session('success'))
@@ -36,17 +42,17 @@
 </div>
 @endif
 
-<div class="bg-white shadow-sm border border-slate-200 rounded-xl overflow-hidden">
+<div class="bg-white rounded-2xl border border-rose-100 shadow-sm overflow-hidden">
     <!-- Header Tabel & Pencarian -->
-    <div class="px-6 py-4 border-b border-slate-200 bg-slate-50/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div class="px-6 py-4 border-b border-rose-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div class="flex items-center gap-3">
-            <h3 class="font-semibold text-slate-800">Daftar Transaksi</h3>
+            <h3 class="font-bold text-slate-900">Daftar Transaksi</h3>
         </div>
         
         <!-- Form Pencarian & Filter -->
         <form action="{{ route('borrowings.index') }}" method="GET" class="w-full md:w-auto flex flex-col md:flex-row items-center gap-2">
             <!-- Filter Status -->
-            <select name="status" onchange="this.form.submit()" class="w-full md:w-auto block px-3 py-2 border border-slate-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 bg-white transition-colors cursor-pointer">
+            <select name="status" onchange="this.form.submit()" class="w-full md:w-auto block px-3 py-2 border border-rose-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 bg-white transition-colors cursor-pointer">
                 <option value="">Semua Status</option>
                 <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                 <option value="Dikembalikan" {{ request('status') == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
@@ -59,7 +65,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
-                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors" placeholder="Cari nama/NIM...">
+                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-rose-200 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-colors" placeholder="Cari nama/NIM...">
             </div>
             
             @if(request('search') || request('status'))
@@ -69,7 +75,7 @@
                     </svg>
                 </a>
             @else
-                <button type="submit" class="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">Cari</button>
+                <button type="submit" class="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-xl hover:bg-slate-700 transition-colors">Cari</button>
             @endif
         </form>
     </div>
@@ -78,7 +84,7 @@
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
             <thead>
-                <tr class="bg-white border-b border-slate-200 text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                <tr class="bg-rose-50/40 text-[11px] text-slate-400 uppercase tracking-widest font-semibold border-b border-rose-50">
                     <th class="px-4 py-4">Peminjam</th>
                     <th class="px-4 py-4">Buku</th>
                     <th class="px-4 py-4">Tgl Pinjam</th>
@@ -87,9 +93,9 @@
                     <th class="px-4 py-4 text-right">Tindakan</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100 text-sm whitespace-nowrap">
+            <tbody class="divide-y divide-rose-50 text-sm whitespace-nowrap">
                 @forelse($borrowings as $borrowing)
-                <tr class="hover:bg-slate-50 transition-colors group">
+                <tr class="hover:bg-rose-50/30 transition-colors">
                     <td class="px-4 py-3">
                         <div class="font-bold text-slate-900">{{ $borrowing->member_name }}</div>
                         <div class="text-xs text-slate-500 mt-0.5">NIM: {{ $borrowing->member_nim }}</div>
@@ -131,7 +137,13 @@
                     </td>
                     <td class="px-4 py-3 text-right">
                         <div class="flex justify-end gap-2">
-                            <a href="{{ route('borrowings.edit', $borrowing->id) }}" class="p-2 text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors border border-transparent hover:border-indigo-100" title="Detail / Update Status">
+                            <a href="{{ route('borrowings.show', $borrowing->id) }}" class="p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Lihat Detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </a>
+                            <a href="{{ route('borrowings.edit', $borrowing->id) }}" class="p-2 text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors border border-transparent hover:border-indigo-100" title="Update Status">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>

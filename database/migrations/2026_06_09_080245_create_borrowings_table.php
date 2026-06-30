@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('borrow_date');
             $table->date('due_date');
             $table->date('return_date')->nullable();
-            $table->enum('status', ['borrowed', 'returned', 'overdue'])->default('borrowed');
+            $table->enum('status', ['Dipinjam', 'Dikembalikan', 'Terlambat'])->default('Dipinjam');
             $table->decimal('fine', 10, 2)->default(0);
             $table->timestamps();
         });

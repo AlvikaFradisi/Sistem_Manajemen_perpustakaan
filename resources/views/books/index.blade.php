@@ -1,17 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-    <div>
-        <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Koleksi Buku</h1>
-        <p class="text-slate-500 mt-1">Kelola data buku yang tersedia di perpustakaan Anda.</p>
+<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
+     style="background: linear-gradient(135deg, #3b0014 0%, #6b0f25 45%, #3d0500 100%); box-shadow: 0 20px 60px -10px rgba(225,29,72,0.5);">
+    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(225,29,72,0.5), transparent)"></div>
+    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(245,158,11,0.35), transparent)"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Koleksi Buku</h1>
+            <p class="text-rose-200/70 text-base font-light max-w-xl">Kelola data buku yang tersedia di perpustakaan Anda.</p>
+        </div>
+        <a href="{{ route('books.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-rose-900 bg-gradient-to-r from-rose-200 to-rose-300 rounded-xl shadow-lg hover:from-rose-300 hover:to-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition-all hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Tambah Buku Baru
+        </a>
     </div>
-    <a href="{{ route('books.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-        </svg>
-        Tambah Buku Baru
-    </a>
 </div>
 
 @if(session('success'))
@@ -25,19 +31,19 @@
 </div>
 @endif
 
-<div class="bg-white shadow-sm border border-slate-200 rounded-xl overflow-hidden">
+<div class="bg-white rounded-2xl border border-rose-100 shadow-sm overflow-hidden">
     <!-- Header Tabel & Pencarian -->
-    <div class="px-6 py-4 border-b border-slate-200 bg-slate-50/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div class="px-6 py-4 border-b border-rose-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div class="flex items-center gap-3">
-            <h3 class="font-semibold text-slate-800">Daftar Buku Terbaru</h3>
-            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100">{{ $books->total() }} Total Buku</span>
+            <h3 class="font-bold text-slate-900">Daftar Buku Terbaru</h3>
+            <span class="bg-rose-50 text-rose-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-rose-100">{{ $books->total() }} Total Buku</span>
         </div>
         
         <!-- Form Pencarian -->
         <!-- Form Pencarian & Filter -->
         <form action="{{ route('books.index') }}" method="GET" class="w-full md:w-auto flex flex-col md:flex-row items-center gap-2">
             <!-- Filter Kategori -->
-            <select name="category" onchange="this.form.submit()" class="w-full md:w-auto block px-3 py-2 border border-slate-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 bg-white transition-colors cursor-pointer">
+            <select name="category" onchange="this.form.submit()" class="w-full md:w-auto block px-3 py-2 border border-rose-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 bg-white transition-colors cursor-pointer">
                 <option value="">Semua Kategori</option>
                 @foreach($categories as $cat)
                     <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>{{ $cat }}</option>
@@ -50,7 +56,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
-                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors" placeholder="Cari judul...">
+                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-rose-200 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-colors" placeholder="Cari judul...">
             </div>
             
             @if(request('search') || request('category'))
@@ -60,7 +66,7 @@
                     </svg>
                 </a>
             @else
-                <button type="submit" class="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">Cari</button>
+                <button type="submit" class="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-xl hover:bg-slate-700 transition-colors">Cari</button>
             @endif
         </form>
     </div>
@@ -69,7 +75,7 @@
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
             <thead>
-                <tr class="bg-white border-b border-slate-200 text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                <tr class="bg-rose-50/40 text-[11px] text-slate-400 uppercase tracking-widest font-semibold border-b border-rose-50">
                     <th class="px-4 py-4">Judul</th>
                     <th class="px-4 py-4">Penulis</th>
                     <th class="px-4 py-4">Kategori</th>
@@ -78,9 +84,9 @@
                     <th class="px-4 py-4 text-right">Tindakan</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100 text-sm whitespace-nowrap">
+            <tbody class="divide-y divide-rose-50 text-sm whitespace-nowrap">
                 @forelse($books as $book)
-                <tr class="hover:bg-slate-50 transition-colors group">
+                <tr class="hover:bg-rose-50/30 transition-colors">
                     <td class="px-4 py-3">
                         <div class="font-bold text-slate-900 whitespace-normal min-w-[150px] max-w-[250px] line-clamp-2" title="{{ $book->title }}">{{ $book->title }}</div>
                         <div class="font-mono text-[10px] text-slate-400 mt-0.5">ISBN: {{ $book->isbn }}</div>
