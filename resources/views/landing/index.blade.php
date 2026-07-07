@@ -194,4 +194,97 @@
         </div>
         @endif
     </div>
+
+    <!-- Library Information & Location Section -->
+    <div class="mt-20 mb-12">
+        <div class="flex flex-col items-center text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Informasi & Lokasi Perpustakaan</h2>
+            <div class="w-20 h-1.5 bg-rose-500 rounded-full mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white p-6 sm:p-8 rounded-3xl border border-rose-100 shadow-sm">
+            <!-- Information side -->
+            <div class="flex flex-col gap-8 justify-center">
+                <!-- Jam Operasional -->
+                <div class="flex items-start gap-5 hover:translate-x-1 transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-rose-50 text-rose-600 flex-shrink-0 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Jam Operasional</h3>
+                        <ul class="text-sm text-slate-600 space-y-1.5 font-medium">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                Senin - Jumat : 08:00 - 16:00 WIB
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                Sabtu : 09:00 - 14:00 WIB
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                Minggu & Libur Nasional : Tutup
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kontak -->
+                <div class="flex items-start gap-5 hover:translate-x-1 transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-rose-50 text-rose-600 flex-shrink-0 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Kontak Kami</h3>
+                        <ul class="text-sm text-slate-600 space-y-1.5 font-medium">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                info@perpustakaan.com
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                (021) 1234-5678
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Aturan -->
+                <div class="flex items-start gap-5 hover:translate-x-1 transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-rose-50 text-rose-600 flex-shrink-0 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Informasi Penting</h3>
+                        <ul class="text-sm text-slate-600 space-y-1.5 font-medium list-disc list-inside">
+                            <li>Maksimal peminjaman 3 buku per anggota.</li>
+                            <li>Durasi peminjaman maksimal 7 hari.</li>
+                            <li>Keterlambatan dikenakan denda sesuai ketentuan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maps side -->
+            <div class="rounded-2xl overflow-hidden h-64 lg:h-full min-h-[350px] border border-rose-100 shadow-inner relative group">
+                <div class="absolute inset-0 bg-slate-100 animate-pulse -z-10"></div>
+                <!-- Menggunakan embed maps Perpustakaan Nasional sebagai contoh -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.24009653519!2d106.759496!3d-6.2297419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x100c5e82dd4b820!2sPerpustakaan%20Nasional%20Republik%20Indonesia!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="group-hover:scale-[1.02] transition-transform duration-700">
+                </iframe>
+            </div>
+        </div>
+    </div>
 @endsection
