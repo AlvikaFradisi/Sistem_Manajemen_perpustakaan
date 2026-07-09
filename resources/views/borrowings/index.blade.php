@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
-     style="background: linear-gradient(135deg, #3b0014 0%, #6b0f25 45%, #3d0500 100%); box-shadow: 0 20px 60px -10px rgba(225,29,72,0.5);">
-    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(225,29,72,0.5), transparent)"></div>
+     style="background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 45%, #0c4a6e 100%); box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(14,165,233,0.5), transparent)"></div>
     <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(245,158,11,0.35), transparent)"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
             <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Data Peminjaman</h1>
-            <p class="text-rose-200/70 text-base font-light max-w-xl">Kelola data peminjaman dan pengembalian buku.</p>
+            <p class="text-sky-200/70 text-base font-light max-w-xl">Kelola data peminjaman dan pengembalian buku.</p>
         </div>
-        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-rose-900 bg-gradient-to-r from-rose-200 to-rose-300 rounded-xl shadow-lg hover:from-rose-300 hover:to-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition-all hover:-translate-y-0.5">
+        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-sky-900 bg-gradient-to-r from-sky-200 to-sky-300 rounded-xl shadow-lg hover:from-sky-300 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all hover:-translate-y-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
@@ -32,19 +32,19 @@
 @endif
 
 @if(session('error'))
-<div class="mb-6 bg-rose-50 border border-rose-200 p-4 rounded-lg flex items-center gap-3">
-    <div class="bg-rose-100 p-1.5 rounded-full">
-        <svg class="h-5 w-5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+<div class="mb-6 bg-sky-50 border border-sky-200 p-4 rounded-lg flex items-center gap-3">
+    <div class="bg-sky-100 p-1.5 rounded-full">
+        <svg class="h-5 w-5 text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
         </svg>
     </div>
-    <p class="text-rose-800 font-medium text-sm">{{ session('error') }}</p>
+    <p class="text-sky-800 font-medium text-sm">{{ session('error') }}</p>
 </div>
 @endif
 
-<div class="bg-white rounded-2xl border border-rose-100 shadow-sm overflow-hidden">
+<div class="bg-white rounded-2xl border border-sky-100 shadow-sm overflow-hidden">
     <!-- Header Tabel & Pencarian -->
-    <div class="px-6 py-4 border-b border-rose-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div class="px-6 py-4 border-b border-sky-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div class="flex items-center gap-3">
             <h3 class="font-bold text-slate-900">Daftar Transaksi</h3>
         </div>
@@ -52,7 +52,7 @@
         <!-- Form Pencarian & Filter -->
         <form action="{{ route('borrowings.index') }}" method="GET" class="w-full md:w-auto flex flex-col md:flex-row items-center gap-2">
             <!-- Filter Status -->
-            <select name="status" onchange="this.form.submit()" class="w-full md:w-auto block px-3 py-2 border border-rose-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 bg-white transition-colors cursor-pointer">
+            <select name="status" onchange="this.form.submit()" class="w-full md:w-auto block px-3 py-2 border border-sky-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 bg-white transition-colors cursor-pointer">
                 <option value="">Semua Status</option>
                 <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                 <option value="Dikembalikan" {{ request('status') == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
@@ -65,11 +65,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
-                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-rose-200 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-colors" placeholder="Cari nama/NIM...">
+                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-sky-200 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-colors" placeholder="Cari nama/NIM...">
             </div>
             
             @if(request('search') || request('status'))
-                <a href="{{ route('borrowings.index') }}" class="p-2 text-slate-400 hover:text-rose-500 transition-colors" title="Hapus Filter">
+                <a href="{{ route('borrowings.index') }}" class="p-2 text-slate-400 hover:text-sky-500 transition-colors" title="Hapus Filter">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
@@ -84,7 +84,7 @@
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
             <thead>
-                <tr class="bg-rose-50/40 text-[11px] text-slate-400 uppercase tracking-widest font-semibold border-b border-rose-50">
+                <tr class="bg-sky-50/40 text-[11px] text-slate-400 uppercase tracking-widest font-semibold border-b border-sky-50">
                     <th class="px-4 py-4">Peminjam</th>
                     <th class="px-4 py-4">Buku</th>
                     <th class="px-4 py-4">Tgl Pinjam</th>
@@ -93,9 +93,9 @@
                     <th class="px-4 py-4 text-right">Tindakan</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-rose-50 text-sm whitespace-nowrap">
+            <tbody class="divide-y divide-sky-50 text-sm whitespace-nowrap">
                 @forelse($borrowings as $borrowing)
-                <tr class="hover:bg-rose-50/30 transition-colors">
+                <tr class="hover:bg-sky-50/30 transition-colors">
                     <td class="px-4 py-3">
                         <div class="font-bold text-slate-900">{{ $borrowing->member_name }}</div>
                         <div class="text-xs text-slate-500 mt-0.5">NIM: {{ $borrowing->member_nim }}</div>
@@ -111,7 +111,7 @@
                     <td class="px-4 py-3 text-slate-600">
                         {{ \Carbon\Carbon::parse($borrowing->due_date)->format('d M Y') }}
                         @if($borrowing->status === 'Dipinjam' && \Carbon\Carbon::now()->startOfDay()->gt(\Carbon\Carbon::parse($borrowing->due_date)->startOfDay()))
-                            <span class="ml-1 text-[10px] font-bold text-rose-500">(Telat)</span>
+                            <span class="ml-1 text-[10px] font-bold text-sky-500">(Telat)</span>
                         @endif
                     </td>
                     <td class="px-4 py-3 text-center">
@@ -120,17 +120,17 @@
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Dikembalikan
                             </span>
                         @elseif($borrowing->status === 'Dipinjam')
-                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Dipinjam
+                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-200"></span> Dipinjam
                             </span>
                         @elseif($borrowing->status === 'Terlambat')
-                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-rose-50 text-rose-700 border border-rose-100">
-                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Terlambat
+                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-200"></span> Terlambat
                             </span>
                         @endif
                         
                         @if($borrowing->fine > 0)
-                            <div class="text-[10px] text-rose-500 font-medium mt-1">
+                            <div class="text-[10px] text-sky-500 font-medium mt-1">
                                 Denda: Rp{{ number_format($borrowing->fine, 0, ',', '.') }}
                             </div>
                         @endif
@@ -143,7 +143,7 @@
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                 </svg>
                             </a>
-                            <a href="{{ route('borrowings.edit', $borrowing->id) }}" class="p-2 text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors border border-transparent hover:border-indigo-100" title="Update Status">
+                            <a href="{{ route('borrowings.edit', $borrowing->id) }}" class="p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Update Status">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
@@ -151,7 +151,7 @@
                             <form action="{{ route('borrowings.destroy', $borrowing->id) }}" method="POST" class="inline-block delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn-delete p-2 text-rose-600 hover:bg-rose-50 rounded-md transition-colors border border-transparent hover:border-rose-100" title="Hapus">
+                                <button type="button" class="btn-delete p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Hapus">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
@@ -174,7 +174,7 @@
                         <p class="text-sm text-slate-500 mb-4">
                             Belum ada data peminjaman yang dicatat.
                         </p>
-                        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center text-sm font-medium text-sky-600 hover:text-sky-700">
                             Buat Peminjaman Baru
                         </a>
                     </td>

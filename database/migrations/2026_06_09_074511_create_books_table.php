@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('category', 50)->nullable();
             $table->integer('stock')->default(1);
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

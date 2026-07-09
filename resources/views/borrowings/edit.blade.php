@@ -16,13 +16,13 @@
     </div>
 
     @if(session('error'))
-    <div class="mb-6 bg-rose-50 border border-rose-200 p-4 rounded-lg flex items-center gap-3">
-        <div class="bg-rose-100 p-1.5 rounded-full">
-            <svg class="h-5 w-5 text-rose-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+    <div class="mb-6 bg-sky-50 border border-sky-200 p-4 rounded-lg flex items-center gap-3">
+        <div class="bg-sky-100 p-1.5 rounded-full">
+            <svg class="h-5 w-5 text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
             </svg>
         </div>
-        <p class="text-rose-800 font-medium text-sm">{{ session('error') }}</p>
+        <p class="text-sky-800 font-medium text-sm">{{ session('error') }}</p>
     </div>
     @endif
 
@@ -59,8 +59,8 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         
                         <div>
-                            <label for="status" class="block text-sm font-medium text-slate-700 mb-1">Status Peminjaman <span class="text-rose-500">*</span></label>
-                            <select name="status" id="status" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('status') border-rose-500 @enderror" required {{ $borrowing->status !== 'Dipinjam' ? 'disabled' : '' }}>
+                            <label for="status" class="block text-sm font-medium text-slate-700 mb-1">Status Peminjaman <span class="text-sky-500">*</span></label>
+                            <select name="status" id="status" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('status') border-sky-500 @enderror" required {{ $borrowing->status !== 'Dipinjam' ? 'disabled' : '' }}>
                                 <option value="Dipinjam" {{ old('status', $borrowing->status) == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                                 <option value="Dikembalikan" {{ old('status', $borrowing->status) == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
                                 <option value="Terlambat" {{ old('status', $borrowing->status) == 'Terlambat' ? 'selected' : '' }}>Terlambat</option>
@@ -70,27 +70,27 @@
                                 <p class="mt-1 text-xs text-slate-500">Buku sudah dikembalikan. Status tidak bisa diubah.</p>
                             @endif
                             @error('status')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div>
                             <label for="return_date" class="block text-sm font-medium text-slate-700 mb-1">Tanggal Dikembalikan</label>
                             <input type="date" name="return_date" id="return_date" value="{{ old('return_date', $borrowing->return_date) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('return_date') border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('return_date') border-sky-500 @enderror" 
                                 {{ $borrowing->status !== 'Dipinjam' ? 'disabled' : '' }}>
                             @if($borrowing->status !== 'Dipinjam')
                                 <input type="hidden" name="return_date" value="{{ $borrowing->return_date }}">
                             @endif
                             @error('return_date')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div>
                             <label for="fine" class="block text-sm font-medium text-slate-700 mb-1">Denda Keterlambatan (Rp)</label>
                             <input type="number" name="fine" id="fine" value="{{ old('fine', $borrowing->fine) }}" min="0" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('fine') border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('fine') border-sky-500 @enderror" 
                                 {{ $borrowing->status !== 'Dipinjam' ? 'disabled' : '' }}>
                             @if($borrowing->status !== 'Dipinjam')
                                 <input type="hidden" name="fine" value="{{ $borrowing->fine }}">
@@ -98,7 +98,7 @@
                                 <p class="mt-1 text-xs text-slate-500">Biarkan kosong untuk menghitung denda otomatis jika terlambat.</p>
                             @endif
                             @error('fine')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                 <a href="{{ route('borrowings.index') }}" class="px-5 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors">
                     Batal
                 </a>
-                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors flex items-center">
+                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-sky-600 to-sky-300 rounded-lg shadow-sm hover:from-sky-700 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-colors flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                     </svg>

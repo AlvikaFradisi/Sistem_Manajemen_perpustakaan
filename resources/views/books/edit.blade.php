@@ -16,7 +16,7 @@
     </div>
 
     <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <form action="{{ route('books.update', $book->id) }}" method="POST">
+        <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
@@ -27,34 +27,34 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Judul Buku -->
                         <div class="md:col-span-2">
-                            <label for="title" class="block text-sm font-medium text-slate-700 mb-1">Judul Buku <span class="text-rose-500">*</span></label>
+                            <label for="title" class="block text-sm font-medium text-slate-700 mb-1">Judul Buku <span class="text-sky-500">*</span></label>
                             <input type="text" name="title" id="title" value="{{ old('title', $book->title) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('title') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('title') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Contoh: Laskar Pelangi" required>
                             @error('title')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <!-- Penulis -->
                         <div>
-                            <label for="author" class="block text-sm font-medium text-slate-700 mb-1">Penulis <span class="text-rose-500">*</span></label>
+                            <label for="author" class="block text-sm font-medium text-slate-700 mb-1">Penulis <span class="text-sky-500">*</span></label>
                             <input type="text" name="author" id="author" value="{{ old('author', $book->author) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('author') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('author') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Nama penulis" required>
                             @error('author')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <!-- ISBN -->
                         <div>
-                            <label for="isbn" class="block text-sm font-medium text-slate-700 mb-1">ISBN <span class="text-rose-500">*</span></label>
+                            <label for="isbn" class="block text-sm font-medium text-slate-700 mb-1">ISBN <span class="text-sky-500">*</span></label>
                             <input type="text" name="isbn" id="isbn" value="{{ old('isbn', $book->isbn) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('isbn') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('isbn') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Contoh: 978-602-8519-93-9" required>
                             @error('isbn')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -68,10 +68,10 @@
                         <div>
                             <label for="publisher" class="block text-sm font-medium text-slate-700 mb-1">Penerbit</label>
                             <input type="text" name="publisher" id="publisher" value="{{ old('publisher', $book->publisher) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('publisher') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('publisher') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Nama penerbit">
                             @error('publisher')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -79,10 +79,10 @@
                         <div>
                             <label for="year" class="block text-sm font-medium text-slate-700 mb-1">Tahun Terbit</label>
                             <input type="number" name="year" id="year" value="{{ old('year', $book->year) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('year') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('year') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Contoh: 2023">
                             @error('year')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -90,21 +90,21 @@
                         <div>
                             <label for="category" class="block text-sm font-medium text-slate-700 mb-1">Kategori</label>
                             <input type="text" name="category" id="category" value="{{ old('category', $book->category) }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('category') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('category') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Contoh: Fiksi, Sains, Sejarah">
                             @error('category')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <!-- Stok -->
                         <div>
-                            <label for="stock" class="block text-sm font-medium text-slate-700 mb-1">Stok Tersedia <span class="text-rose-500">*</span></label>
+                            <label for="stock" class="block text-sm font-medium text-slate-700 mb-1">Stok Tersedia <span class="text-sky-500">*</span></label>
                             <input type="number" name="stock" id="stock" value="{{ old('stock', $book->stock) }}" min="0" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('stock') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('stock') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 required>
                             @error('stock')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -112,10 +112,28 @@
                         <div class="md:col-span-2">
                             <label for="description" class="block text-sm font-medium text-slate-700 mb-1">Deskripsi/Sinopsis</label>
                             <textarea name="description" id="description" rows="4" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all @error('description') border-rose-500 focus:ring-rose-500 focus:border-rose-500 @enderror" 
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('description') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror" 
                                 placeholder="Tuliskan sinopsis atau deskripsi singkat buku ini...">{{ old('description', $book->description) }}</textarea>
                             @error('description')
-                                <p class="mt-1 text-sm text-rose-500">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Gambar Sampul -->
+                        <div class="md:col-span-2">
+                            <label for="image" class="block text-sm font-medium text-slate-700 mb-1">Gambar Sampul (Biarkan kosong jika tidak ingin mengubah)</label>
+                            
+                            @if($book->image)
+                                <div class="mb-3">
+                                    <img src="{{ asset('storage/' . $book->image) }}" alt="Cover {{ $book->title }}" class="h-32 object-contain rounded-lg border border-slate-200">
+                                </div>
+                            @endif
+
+                            <input type="file" name="image" id="image" accept="image/*"
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('image') border-sky-500 focus:ring-sky-500 focus:border-sky-500 @enderror">
+                            <p class="mt-1 text-xs text-slate-500">Format yang didukung: JPG, JPEG, PNG, GIF, WEBP. Maksimal 2MB.</p>
+                            @error('image')
+                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -127,7 +145,7 @@
                 <a href="{{ route('books.index') }}" class="px-5 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors">
                     Batal
                 </a>
-                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors flex items-center">
+                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-sky-600 to-sky-300 rounded-lg shadow-sm hover:from-sky-700 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-colors flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                     </svg>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -49,7 +50,12 @@ class BookController extends Controller
             'category' => 'nullable|string|max:50',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('books', 'public');
+        }
 
         Book::create($validated);
         return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan!');
@@ -76,7 +82,16 @@ class BookController extends Controller
             'category' => 'nullable|string|max:50',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($book->image) {
+                Storage::disk('public')->delete($book->image);
+            }
+            $validated['image'] = $request->file('image')->store('books', 'public');
+        }
 
         $book->update($validated);
         return redirect()->route('books.index')->with('success', 'Data buku berhasil diperbarui!');
@@ -84,6 +99,9 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        if ($book->image) {
+            Storage::disk('public')->delete($book->image);
+        }
         $book->delete();
         return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus!');
     }

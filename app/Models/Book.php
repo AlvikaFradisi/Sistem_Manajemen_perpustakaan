@@ -17,6 +17,7 @@ class Book extends Model
         'category',
         'stock',
         'description',
+        'image',
     ];
 
     // Relasi: 1 Buku bisa memiliki banyak riwayat Peminjaman (Borrowing)
