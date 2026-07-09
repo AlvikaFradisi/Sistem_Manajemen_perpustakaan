@@ -3,11 +3,11 @@
 @section('content')
 {{-- Hero Section --}}
 <div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
-     style="background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 45%, #0c4a6e 100%); box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+     style="background: #0c4a6e; box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
     {{-- Glow decorations --}}
-    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(14,165,233,0.5), transparent)"></div>
-    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(245,158,11,0.35), transparent)"></div>
-    <div class="absolute top-1/2 right-1/3 w-48 h-48 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(79,70,229,0.3), transparent)"></div>
+    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: transparent"></div>
+    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: transparent"></div>
+    <div class="absolute top-1/2 right-1/3 w-48 h-48 rounded-full blur-3xl" style="background: transparent"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
@@ -59,7 +59,7 @@
 
     {{-- Card: Dipinjam --}}
     <div class="bg-white rounded-2xl p-5 border border-cyan-100 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-50 transition-all duration-300 group hover:-translate-y-0.5 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-1 h-full rounded-l-2xl" style="background: linear-gradient(180deg, #06b6d4, #67e8f9)"></div>
+        <div class="absolute top-0 left-0 w-1 h-full rounded-l-2xl" style="background: #06b6d4"></div>
         <div class="pl-3">
             <div class="flex items-center justify-between mb-4">
                 <div class="p-2.5 rounded-xl bg-cyan-50 group-hover:bg-cyan-100 transition-colors">
@@ -78,7 +78,7 @@
 
     {{-- Card: Terlambat --}}
     <div class="bg-white rounded-2xl p-5 border border-indigo-100 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-50 transition-all duration-300 group hover:-translate-y-0.5 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-1 h-full rounded-l-2xl" style="background: linear-gradient(180deg, #4f46e5, #818cf8)"></div>
+        <div class="absolute top-0 left-0 w-1 h-full rounded-l-2xl" style="background: #4f46e5"></div>
         <div class="pl-3">
             <div class="flex items-center justify-between mb-4">
                 <div class="p-2.5 rounded-xl bg-indigo-50 group-hover:bg-indigo-100 transition-colors">
@@ -97,7 +97,7 @@
 
     {{-- Card: Denda --}}
     <div class="bg-white rounded-2xl p-5 border border-sky-100 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-50 transition-all duration-300 group hover:-translate-y-0.5 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-1 h-full rounded-l-2xl" style="background: linear-gradient(180deg, #0ea5e9, #7dd3fc)"></div>
+        <div class="absolute top-0 left-0 w-1 h-full rounded-l-2xl" style="background: #0ea5e9"></div>
         <div class="pl-3">
             <div class="flex items-center justify-between mb-4">
                 <div class="p-2.5 rounded-xl bg-sky-50 group-hover:bg-sky-100 transition-colors">
@@ -123,7 +123,7 @@
                 <p class="text-xs text-slate-400 mt-0.5">Statistik 6 bulan terakhir</p>
             </div>
             <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold text-sky-700 bg-sky-50 border border-sky-100">
-                <span class="w-2 h-2 rounded-full bg-gradient-to-r from-sky-500 to-sky-200"></span>
+                <span class="w-2 h-2 rounded-full bg-sky-400"></span>
                 Peminjaman
             </div>
         </div>
@@ -158,7 +158,7 @@
     <div class="px-6 py-4 border-b border-sky-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                 style="background: linear-gradient(135deg, #0ea5e9, #7dd3fc)">
+                 style="background: #0ea5e9">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -194,7 +194,7 @@
                     <td class="px-6 py-4">
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs text-white flex-shrink-0"
-                                 style="background: linear-gradient(135deg, #0ea5e9, #7dd3fc);">
+                                 style="background: #0ea5e9;">
                                 {{ strtoupper(substr($borrowing->member_name, 0, 2)) }}
                             </div>
                             <div>
@@ -222,7 +222,7 @@
                             </span>
                         @elseif($borrowing->status === 'Terlambat')
                             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-100">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-200"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
                                 Terlambat
                             </span>
                         @endif
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     label: 'Peminjaman',
                     data: {!! json_encode($chartBorrowingTotals) !!},
                     borderColor: '#0ea5e9',
-                    backgroundColor: gradient,
+                    backgroundColor: 'rgba(14,165,233,0.1)',
                     borderWidth: 2.5,
                     pointBackgroundColor: '#fff1f2',
                     pointBorderColor: '#0ea5e9',

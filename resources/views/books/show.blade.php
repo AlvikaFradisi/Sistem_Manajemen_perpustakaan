@@ -82,7 +82,7 @@
                         </span>
                     @else
                         <span class="inline-flex items-center gap-1.5 text-sm font-bold text-sky-600">
-                            <span class="w-2 h-2 rounded-full bg-gradient-to-r from-sky-500 to-sky-200"></span> Habis
+                            <span class="w-2 h-2 rounded-full bg-sky-400"></span> Habis
                         </span>
                     @endif
                 </div>

@@ -21,12 +21,12 @@
 
         /* Sidebar background */
         .sidebar-bg {
-            background: linear-gradient(160deg, #0c4a6e 0%, #082f49 60%, #0c4a6e 100%);
+            background: #0c4a6e;
         }
 
         /* Active nav item */
         .nav-active {
-            background: linear-gradient(90deg, rgba(14,165,233,0.22) 0%, rgba(245,158,11,0.05) 100%);
+            background: rgba(14,165,233,0.15);
             border-left: 3px solid #0ea5e9 !important;
         }
         .nav-active .nav-icon { color: #7dd3fc !important; }
@@ -46,12 +46,12 @@
 
         /* Logo gradient */
         .logo-text {
-            background: linear-gradient(90deg, #38bdf8, #bae6fd);
+            background: #0ea5e9;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .logo-icon { background: linear-gradient(135deg, #0ea5e9, #7dd3fc); }
+        .logo-icon { background: #0ea5e9; }
 
         /* Section label */
         .sidebar-section-label { color: rgba(186,230,253,0.5); }
@@ -77,7 +77,7 @@
 
         /* Topbar dark */
         .topbar-dark {
-            background: linear-gradient(90deg, #082f49 0%, #0c4a6e 100%);
+            background: #0c4a6e;
             border-bottom: 1px solid rgba(14,165,233,0.18);
             box-shadow: 0 1px 0 rgba(14,165,233,0.07), 0 4px 24px rgba(0,0,0,0.35);
         }
@@ -171,7 +171,7 @@
                 <span class="nav-label {{ request()->routeIs('borrowings.*') ? 'nav-active-label' : '' }}">Sirkulasi</span>
                 @php $overdueCount = \App\Models\Borrowing::where('status','Terlambat')->count(); @endphp
                 @if($overdueCount > 0)
-                <span class="ml-auto text-[10px] font-bold bg-gradient-to-r from-sky-600 to-sky-300 text-white px-1.5 py-0.5 rounded-full badge-pulse">{{ $overdueCount }}</span>
+                <span class="ml-auto text-[10px] font-bold bg-sky-500 text-white px-1.5 py-0.5 rounded-full badge-pulse">{{ $overdueCount }}</span>
                 @endif
             </a>
 
@@ -195,7 +195,7 @@
         <div class="p-4 border-t border-white/5 flex-shrink-0">
             <div class="sidebar-profile flex items-center gap-3 p-3 rounded-xl cursor-pointer">
                 <div class="h-9 w-9 rounded-xl flex-shrink-0 flex items-center justify-center font-bold text-xs text-white shadow-md"
-                     style="background: linear-gradient(135deg, #0ea5e9, #7dd3fc);">
+                     style="background: #0ea5e9;">
                     AU
                 </div>
                 <div class="flex-1 min-w-0">
@@ -228,7 +228,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" style="color: rgba(14,165,233,0.6)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
-                <span class="font-bold" style="background: linear-gradient(90deg, #38bdf8, #bae6fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                <span class="font-bold text-sky-500">
                     @php
                         $segment = request()->segment(1);
                         $labels = ['books' => 'Katalog Buku', 'borrowings' => 'Sirkulasi Peminjaman'];
@@ -262,7 +262,7 @@
                 <!-- Avatar -->
                 <div class="flex items-center gap-2.5 pl-1 cursor-pointer group">
                     <div class="h-8 w-8 rounded-lg flex items-center justify-center font-bold text-xs text-white shadow-md group-hover:scale-105 transition-transform"
-                         style="background: linear-gradient(135deg, #0ea5e9, #7dd3fc);">
+                         style="background: #0ea5e9;">
                         AU
                     </div>
                     <div class="hidden sm:block">

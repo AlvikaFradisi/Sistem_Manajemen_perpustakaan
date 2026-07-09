@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
-     style="background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 45%, #0c4a6e 100%); box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
-    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(14,165,233,0.5), transparent)"></div>
-    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(245,158,11,0.35), transparent)"></div>
+     style="background: #0c4a6e; box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: transparent"></div>
+    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: transparent"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
@@ -124,7 +124,7 @@
                             </span>
                         @else
                             <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-100">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-200 shadow-[0_0_4px_rgba(244,63,94,0.5)]"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shadow-[0_0_4px_rgba(244,63,94,0.5)]"></span>
                                 Habis
                             </span>
                         @endif

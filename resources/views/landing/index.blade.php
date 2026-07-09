@@ -3,10 +3,10 @@
 @section('content')
     <!-- Hero Section -->
     <div class="relative overflow-hidden rounded-[2rem] p-8 sm:p-12 lg:p-16 mb-12 text-white shadow-2xl"
-         style="background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 45%, #0c4a6e 100%); box-shadow: 0 25px 50px -12px rgba(14,165,233,0.4);">
+         style="background: #0c4a6e; box-shadow: 0 25px 50px -12px rgba(14,165,233,0.4);">
         <!-- Glow decorations -->
-        <div class="absolute -top-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-[100px]" style="background: radial-gradient(circle, rgba(14,165,233,0.6), transparent)"></div>
-        <div class="absolute -bottom-24 -left-24 w-[25rem] h-[25rem] rounded-full blur-[80px]" style="background: radial-gradient(circle, rgba(14,165,233,0.4), transparent)"></div>
+        <div class="absolute -top-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-[100px]" style="background: transparent"></div>
+        <div class="absolute -bottom-24 -left-24 w-[25rem] h-[25rem] rounded-full blur-[80px]" style="background: transparent"></div>
         
         <div class="relative z-10 max-w-3xl">
             <span class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold tracking-widest uppercase rounded-full border mb-6"
@@ -14,8 +14,8 @@
                 <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
                 Katalog Digital Publik
             </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
-                Eksplorasi Jendela <span style="background: linear-gradient(90deg, #38bdf8, #bae6fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dunia</span> Anda di Sini.
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight text-white">
+                Eksplorasi Jendela Dunia Anda di Sini.
             </h1>
             <p class="text-sky-100/80 text-lg sm:text-xl font-light mb-8 max-w-2xl leading-relaxed">
                 Cari koleksi buku terbaru, cek ketersediaan stok secara real-time, dan temukan referensi terbaik untuk kebutuhan belajar Anda tanpa harus mendaftar akun.
@@ -80,7 +80,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div>
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Katalog Buku</h2>
-                <div class="w-20 h-1.5 bg-gradient-to-r from-sky-500 to-sky-200 rounded-full mt-3"></div>
+                <div class="w-20 h-1.5 bg-sky-400 rounded-full mt-3"></div>
             </div>
 
             <!-- Search & Filter Form -->
@@ -103,7 +103,7 @@
                            placeholder="Ketik judul buku atau penulis...">
                 </div>
 
-                <button type="submit" class="hidden sm:block px-6 py-3 bg-gradient-to-r from-sky-600 to-sky-300 text-white text-sm font-bold rounded-xl hover:from-sky-700 hover:to-sky-400 shadow-md transition-colors">
+                <button type="submit" class="hidden sm:block px-6 py-3 bg-sky-500 text-white text-sm font-bold rounded-xl hover:bg-sky-600 shadow-md transition-colors">
                     Cari
                 </button>
             </form>
@@ -204,92 +204,106 @@
     <div class="mt-20 mb-12">
         <div class="flex flex-col items-center text-center mb-10">
             <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Informasi & Lokasi Perpustakaan</h2>
-            <div class="w-20 h-1.5 bg-gradient-to-r from-sky-500 to-sky-200 rounded-full mt-4"></div>
+            <div class="w-20 h-1.5 bg-sky-400 rounded-full mt-4"></div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white p-6 sm:p-8 rounded-3xl border border-sky-100 shadow-sm">
-            <!-- Information side -->
-            <div class="flex flex-col gap-8 justify-center">
-                <!-- Jam Operasional -->
-                <div class="flex items-start gap-5 hover:translate-x-1 transition-transform duration-300">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-50 text-sky-600 flex-shrink-0 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-slate-800 text-lg mb-2">Jam Operasional</h3>
-                        <ul class="text-sm text-slate-600 space-y-1.5 font-medium">
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Senin - Jumat : 08:00 - 16:00 WIB
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                                Sabtu : 09:00 - 14:00 WIB
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-200"></span>
-                                Minggu & Libur Nasional : Tutup
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <!-- Kontak -->
-                <div class="flex items-start gap-5 hover:translate-x-1 transition-transform duration-300">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-50 text-sky-600 flex-shrink-0 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-slate-800 text-lg mb-2">Kontak Kami</h3>
-                        <ul class="text-sm text-slate-600 space-y-1.5 font-medium">
-                            <li class="flex items-center gap-2">
-                                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                info@perpustakaan.com
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                                (021) 1234-5678
-                            </li>
-                        </ul>
-                    </div>
+            <!-- Jam Operasional (Solid Blue Card) -->
+            <div class="bg-sky-500 rounded-[2rem] p-8 text-white shadow-md hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-center">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center bg-white/20 text-white mb-6 backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                 </div>
+                <h3 class="font-black text-xl mb-4 tracking-tight">Jam Operasional</h3>
+                <ul class="text-sm space-y-3 font-medium text-sky-50">
+                    <li class="flex items-center justify-between border-b border-sky-400 pb-2">
+                        <span>Senin - Jumat</span>
+                        <span class="font-bold text-white">08:00 - 16:00</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-sky-400 pb-2">
+                        <span>Sabtu</span>
+                        <span class="font-bold text-white">09:00 - 14:00</span>
+                    </li>
+                    <li class="flex items-center justify-between pt-1">
+                        <span>Minggu / Libur</span>
+                        <span class="px-2 py-1 bg-sky-600 rounded-md text-[10px] font-bold uppercase tracking-wider">Tutup</span>
+                    </li>
+                </ul>
+            </div>
 
-                <!-- Aturan -->
-                <div class="flex items-start gap-5 hover:translate-x-1 transition-transform duration-300">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-50 text-sky-600 flex-shrink-0 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <!-- Kontak Kami (White Glassy Card) -->
+            <div class="bg-white rounded-[2rem] p-8 border border-sky-100 shadow-sm hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-center">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center bg-sky-50 text-sky-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="font-black text-slate-800 text-xl mb-4 tracking-tight">Kontak Kami</h3>
+                <div class="space-y-4">
+                    <a href="mailto:info@perpustakaan.com" class="flex items-center gap-3 text-sm text-slate-600 font-medium hover:text-sky-600 transition-colors group">
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-sky-50 transition-colors">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        info@perpustakaan.com
+                    </a>
+                    <a href="tel:02112345678" class="flex items-center gap-3 text-sm text-slate-600 font-medium hover:text-sky-600 transition-colors group">
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-sky-50 transition-colors">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        (021) 1234-5678
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Map Card (Single Column, Compact) -->
+            <div class="rounded-[2rem] overflow-hidden h-64 lg:h-full min-h-[300px] border border-sky-100 shadow-sm relative group bg-slate-100 md:col-span-2 lg:col-span-1">
+                <div class="absolute inset-0 z-10 pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.05)] rounded-[2rem]"></div>
+                <!-- Interactive overlay prompt -->
+                <div class="absolute inset-x-0 bottom-0 p-4 bg-white/80 backdrop-blur-md border-t border-white/50 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 flex justify-between items-center">
+                    <span class="text-xs font-bold text-sky-900">Lokasi</span>
+                    <a href="https://maps.google.com/?q=-0.9144248993635581,100.4661698580422" target="_blank" class="px-3 py-1.5 bg-sky-500 text-white text-[10px] font-bold rounded-lg hover:bg-sky-600 transition-colors">Buka Map</a>
+                </div>
+                <iframe src="https://maps.google.com/maps?q=-0.9144248993635581,100.4661698580422&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        class="w-full h-full border-0 absolute inset-0 z-0" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Informasi Penting (Dark Wide Strip) -->
+            <div class="md:col-span-2 lg:col-span-3 bg-slate-900 rounded-[2rem] p-6 sm:p-8 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 group hover:bg-slate-800 transition-colors duration-500">
+                <div class="flex items-center gap-5">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800 flex items-center justify-center text-sky-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800 text-lg mb-2">Informasi Penting</h3>
-                        <ul class="text-sm text-slate-600 space-y-1.5 font-medium list-disc list-inside">
-                            <li>Maksimal peminjaman 3 buku per anggota.</li>
-                            <li>Durasi peminjaman maksimal 7 hari.</li>
-                            <li>Keterlambatan dikenakan denda sesuai ketentuan.</li>
-                        </ul>
+                        <h3 class="font-black text-white text-lg mb-1 tracking-tight">Aturan & Informasi Penting</h3>
+                        <p class="text-sm text-slate-400">Harap diperhatikan sebelum meminjam buku.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap sm:flex-nowrap gap-3 w-full sm:w-auto">
+                    <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Max Peminjaman</p>
+                        <p class="text-sm font-medium text-white">3 Buku / Anggota</p>
+                    </div>
+                    <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Durasi</p>
+                        <p class="text-sm font-medium text-white">Maksimal 7 Hari</p>
+                    </div>
+                    <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Sanksi</p>
+                        <p class="text-sm font-medium text-white text-sky-400">Denda Berlaku</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Maps side -->
-            <div class="rounded-2xl overflow-hidden h-64 lg:h-full min-h-[350px] border border-sky-100 shadow-inner relative group">
-                <div class="absolute inset-0 bg-slate-100 animate-pulse -z-10"></div>
-                <!-- Menggunakan embed maps dengan koordinat baru -->
-                <iframe src="https://maps.google.com/maps?q=-0.9144248993635581,100.4661698580422&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="group-hover:scale-[1.02] transition-transform duration-700">
-                </iframe>
-            </div>
         </div>
     </div>
 @endsection

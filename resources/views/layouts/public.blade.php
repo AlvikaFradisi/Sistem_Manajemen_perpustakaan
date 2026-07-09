@@ -48,7 +48,7 @@
                 <!-- Logo -->
                 <a href="{{ route('landing.index') }}" class="flex items-center gap-3 group">
                     <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
-                         style="background: linear-gradient(135deg, #0ea5e9, #7dd3fc);">
+                         style="background: #0ea5e9;">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
@@ -67,7 +67,7 @@
                     <div class="w-px h-6 bg-sky-200"></div>
 
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
-                       style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);">
+                       style="background: #0ea5e9;">
                         Login Admin
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
