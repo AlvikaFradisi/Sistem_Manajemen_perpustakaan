@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Perpus — Sistem Manajemen Perpustakaan</title>
+    <title>Perpustakaan PNP — Sistem Manajemen Perpustakaan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -137,7 +137,7 @@
                     </svg>
                 </div>
                 <div>
-                    <span class="logo-text text-lg font-bold tracking-tight">E-Perpus</span>
+                    <span class="logo-text text-lg font-bold tracking-tight">Perpustakaan PNP</span>
                     <p class="text-[10px] -mt-0.5 font-medium" style="color: rgba(186,230,253,0.6);">Library Management</p>
                 </div>
             </a>
@@ -161,6 +161,14 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
                 <span class="nav-label {{ request()->routeIs('books.*') ? 'nav-active-label' : '' }}">Katalog Buku</span>
+            </a>
+
+            <a href="{{ route('members.index') }}"
+               class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('members.*') ? 'nav-active' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 nav-icon {{ request()->routeIs('members.*') ? '!text-sky-300' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span class="nav-label {{ request()->routeIs('members.*') ? 'nav-active-label' : '' }}">Data Anggota</span>
             </a>
 
             <a href="{{ route('borrowings.index') }}"
@@ -196,15 +204,20 @@
             <div class="sidebar-profile flex items-center gap-3 p-3 rounded-xl cursor-pointer">
                 <div class="h-9 w-9 rounded-xl flex-shrink-0 flex items-center justify-center font-bold text-xs text-white shadow-md"
                      style="background: #0ea5e9;">
-                    AU
+                    {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}{{ strtoupper(substr(Auth::user()->name ?? 'U', 1, 1)) }}
                 </div>
                 <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold truncate" style="color: #bae6fd;">Admin Utama</p>
+                    <p class="text-sm font-semibold truncate" style="color: #bae6fd;">{{ Auth::user()->name ?? 'Admin Utama' }}</p>
                     <p class="text-[11px] truncate" style="color: rgba(186,230,253,0.75);">Pustakawan</p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" style="color: rgba(186,230,253,0.5)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                </svg>
+                <form method="POST" action="{{ route('logout') }}" class="flex-shrink-0">
+                    @csrf
+                    <button type="submit" class="p-1 hover:bg-white/10 rounded-lg transition-colors group/logout" title="Logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" style="color: rgba(186,230,253,0.5)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
     </aside>
@@ -224,7 +237,7 @@
 
             <!-- Breadcrumb -->
             <div class="hidden lg:flex items-center gap-2 text-sm">
-                <span class="font-medium" style="color: rgba(186,230,253,0.75);">E-Perpus</span>
+                <span class="font-medium" style="color: rgba(186,230,253,0.75);">Perpustakaan PNP</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" style="color: rgba(14,165,233,0.6)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -259,15 +272,37 @@
 
                 <div class="h-5 w-px topbar-divider"></div>
 
-                <!-- Avatar -->
-                <div class="flex items-center gap-2.5 pl-1 cursor-pointer group">
-                    <div class="h-8 w-8 rounded-lg flex items-center justify-center font-bold text-xs text-white shadow-md group-hover:scale-105 transition-transform"
-                         style="background: #0ea5e9;">
-                        AU
+                <!-- Avatar / Dropdown -->
+                <div class="relative pl-1" x-data="{ dropdownOpen: false }">
+                    <div @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="flex items-center gap-2.5 cursor-pointer group">
+                        <div class="h-8 w-8 rounded-lg flex items-center justify-center font-bold text-xs text-white shadow-md group-hover:scale-105 transition-transform"
+                             style="background: #0ea5e9;">
+                            {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}{{ strtoupper(substr(Auth::user()->name ?? 'U', 1, 1)) }}
+                        </div>
+                        <div class="hidden sm:block">
+                            <p class="text-xs font-semibold leading-tight" style="color: #bae6fd;">{{ Auth::user()->name ?? 'Admin Utama' }}</p>
+                            <p class="text-[10px]" style="color: rgba(186,230,253,0.75);">Pustakawan</p>
+                        </div>
                     </div>
-                    <div class="hidden sm:block">
-                        <p class="text-xs font-semibold leading-tight" style="color: #bae6fd;">Admin Utama</p>
-                        <p class="text-[10px]" style="color: rgba(186,230,253,0.75);">Pustakawan</p>
+                    
+                    <!-- Dropdown -->
+                    <div x-show="dropdownOpen" 
+                         x-transition:enter="transition ease-out duration-100"
+                         x-transition:enter-start="transform opacity-0 scale-95"
+                         x-transition:enter-end="transform opacity-100 scale-100"
+                         x-transition:leave="transition ease-in duration-75"
+                         x-transition:leave-start="transform opacity-100 scale-100"
+                         x-transition:leave-end="transform opacity-0 scale-95"
+                         class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                                Logout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

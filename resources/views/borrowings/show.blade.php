@@ -76,11 +76,11 @@
                         <div class="space-y-4">
                             <div>
                                 <p class="text-xs text-slate-500 font-medium">Nama Peminjam</p>
-                                <p class="font-semibold text-slate-800 text-lg">{{ $borrowing->member_name }}</p>
+                                <p class="font-semibold text-slate-800 text-lg">{{ $borrowing->member->name ?? 'Anggota Dihapus' }}</p>
                             </div>
                             <div>
                                 <p class="text-xs text-slate-500 font-medium">NIM / ID Anggota</p>
-                                <p class="font-mono text-slate-700 bg-slate-50 px-2 py-1 rounded-md inline-block mt-1">{{ $borrowing->member_nim }}</p>
+                                <p class="font-mono text-slate-700 bg-slate-50 px-2 py-1 rounded-md inline-block mt-1">{{ $borrowing->member->nim ?? '-' }}</p>
                             </div>
                         </div>
                     </div>

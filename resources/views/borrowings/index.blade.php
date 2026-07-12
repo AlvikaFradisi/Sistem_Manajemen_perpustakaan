@@ -97,8 +97,8 @@
                 @forelse($borrowings as $borrowing)
                 <tr class="hover:bg-sky-50/30 transition-colors">
                     <td class="px-4 py-3">
-                        <div class="font-bold text-slate-900">{{ $borrowing->member_name }}</div>
-                        <div class="text-xs text-slate-500 mt-0.5">NIM: {{ $borrowing->member_nim }}</div>
+                        <div class="font-bold text-slate-900">{{ $borrowing->member->name ?? 'Anggota Dihapus' }}</div>
+                        <div class="text-xs text-slate-500 mt-0.5">NIM: {{ $borrowing->member->nim ?? '-' }}</div>
                     </td>
                     <td class="px-4 py-3">
                         <div class="font-medium text-slate-700 whitespace-normal min-w-[150px] max-w-[200px] line-clamp-2" title="{{ $borrowing->book->title ?? 'Buku Dihapus' }}">
@@ -129,8 +129,8 @@
                             </span>
                         @endif
                         
-                        @if($borrowing->fine > 0)
-                            <div class="text-[10px] text-sky-500 font-medium mt-1">
+                        @if($borrowing->status !== 'Dipinjam')
+                            <div class="text-[10px] {{ $borrowing->fine > 0 ? 'text-red-500 font-bold' : 'text-slate-400' }} mt-1">
                                 Denda: Rp{{ number_format($borrowing->fine, 0, ',', '.') }}
                             </div>
                         @endif

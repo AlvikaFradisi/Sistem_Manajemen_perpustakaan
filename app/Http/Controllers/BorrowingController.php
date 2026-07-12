@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Borrowing;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -14,10 +15,12 @@ class BorrowingController extends Controller
         $search = $request->input('search');
         $status = $request->input('status');
 
-        $borrowings = Borrowing::with('book')
+        $borrowings = Borrowing::with(['book', 'member'])
             ->when($search, function ($query, $search) {
-                return $query->where('member_name', 'like', "%{$search}%")
-                             ->orWhere('member_nim', 'like', "%{$search}%");
+                return $query->whereHas('member', function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('nim', 'like', "%{$search}%");
+                });
             })
             ->when($status, function ($query, $status) {
                 return $query->where('status', $status);
@@ -33,15 +36,15 @@ class BorrowingController extends Controller
     {
         // Hanya tampilkan buku yang stoknya lebih dari 0
         $books = Book::where('stock', '>', 0)->get();
-        return view('borrowings.create', compact('books'));
+        $members = Member::all();
+        return view('borrowings.create', compact('books', 'members'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'book_id' => 'required|exists:books,id',
-            'member_name' => 'required|string|max:100',
-            'member_nim' => 'required|string|max:20',
+            'member_id' => 'required|exists:members,id',
             'borrow_date' => 'required|date',
             'due_date' => 'required|date|after_or_equal:borrow_date',
         ]);
@@ -72,7 +75,8 @@ class BorrowingController extends Controller
     public function edit(Borrowing $borrowing)
     {
         $books = Book::all();
-        return view('borrowings.edit', compact('borrowing', 'books'));
+        $members = Member::all();
+        return view('borrowings.edit', compact('borrowing', 'books', 'members'));
     }
 
     public function update(Request $request, Borrowing $borrowing)
@@ -92,14 +96,14 @@ class BorrowingController extends Controller
                 $validated['return_date'] = Carbon::now()->toDateString();
             }
 
-            // Hitung denda jika terlambat dan denda belum diisi manual
-            if ($validated['status'] === 'Terlambat' && empty($validated['fine'])) {
+            // Hitung denda jika terlambat dan denda belum diisi manual atau bernilai 0
+            if ($validated['status'] === 'Terlambat' && (empty($validated['fine']) || $validated['fine'] == 0)) {
                 $returnDate = Carbon::parse($validated['return_date']);
                 $dueDate = Carbon::parse($borrowing->due_date);
                 
                 if ($returnDate->gt($dueDate)) {
                     $daysLate = $returnDate->diffInDays($dueDate);
-                    $finePerDay = 5000; // Contoh denda Rp 5000 per hari
+                    $finePerDay = 2000; // Denda Rp 2.000 per hari
                     $validated['fine'] = $daysLate * $finePerDay;
                 }
             }

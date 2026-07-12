@@ -295,11 +295,11 @@
                     </div>
                     <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
                         <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Durasi</p>
-                        <p class="text-sm font-medium text-white">Maksimal 7 Hari</p>
+                        <p class="text-sm font-medium text-white">Maksimal 3 Hari</p>
                     </div>
                     <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Sanksi</p>
-                        <p class="text-sm font-medium text-white text-sky-400">Denda Berlaku</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Denda Terlambat</p>
+                        <p class="text-sm font-bold text-red-400">Rp 2.000 / Hari</p>
                     </div>
                 </div>
             </div>

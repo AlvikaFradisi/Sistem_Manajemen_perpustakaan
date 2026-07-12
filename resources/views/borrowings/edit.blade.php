@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <h4 class="text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1">Informasi Peminjam</h4>
-                    <p class="font-semibold text-slate-800 text-lg">{{ $borrowing->member_name }} <span class="text-sm font-normal text-slate-500">({{ $borrowing->member_nim }})</span></p>
+                    <p class="font-semibold text-slate-800 text-lg">{{ $borrowing->member->name ?? 'Anggota Dihapus' }} <span class="text-sm font-normal text-slate-500">({{ $borrowing->member->nim ?? '-' }})</span></p>
                 </div>
                 <div>
                     <h4 class="text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1">Tanggal Pinjam</h4>

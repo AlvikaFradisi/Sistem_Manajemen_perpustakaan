@@ -1,0 +1,168 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
+     style="background: #0c4a6e; box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+    <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: transparent"></div>
+    <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: transparent"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Anggota Perpustakaan</h1>
+            <p class="text-sky-200/70 text-base font-light max-w-xl">Kelola data anggota yang terdaftar di perpustakaan Anda.</p>
+        </div>
+        <a href="{{ route('members.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-sky-900 bg-gradient-to-r from-sky-200 to-sky-300 rounded-xl shadow-lg hover:from-sky-300 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Tambah Anggota Baru
+        </a>
+    </div>
+</div>
+
+@if(session('success'))
+<div class="mb-6 bg-emerald-50 border border-emerald-200 p-4 rounded-lg flex items-center gap-3">
+    <div class="bg-emerald-100 p-1.5 rounded-full">
+        <svg class="h-5 w-5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+    </div>
+    <p class="text-emerald-800 font-medium text-sm">{{ session('success') }}</p>
+</div>
+@endif
+
+<div class="bg-white rounded-2xl border border-sky-100 shadow-sm overflow-hidden">
+    <div class="px-6 py-4 border-b border-sky-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="flex items-center gap-3">
+            <h3 class="font-bold text-slate-900">Daftar Anggota</h3>
+            <span class="bg-sky-50 text-sky-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-sky-100">{{ $members->total() }} Total</span>
+        </div>
+        
+        <form action="{{ route('members.index') }}" method="GET" class="w-full md:w-auto flex flex-col md:flex-row items-center gap-2">
+            <div class="relative w-full md:w-64">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-4 w-4 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-sky-200 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-colors" placeholder="Cari nama atau NIM...">
+            </div>
+            
+            @if(request('search'))
+                <a href="{{ route('members.index') }}" class="p-2 text-slate-400 hover:text-sky-500 transition-colors" title="Hapus Filter">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            @else
+                <button type="submit" class="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-xl hover:bg-slate-700 transition-colors">Cari</button>
+            @endif
+        </form>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-sky-50/40 text-[11px] text-slate-400 uppercase tracking-widest font-semibold border-b border-sky-50">
+                    <th class="px-4 py-4">Nama Lengkap</th>
+                    <th class="px-4 py-4">NIM / ID</th>
+                    <th class="px-4 py-4">Email</th>
+                    <th class="px-4 py-4">Telepon</th>
+                    <th class="px-4 py-4 text-right">Tindakan</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-sky-50 text-sm whitespace-nowrap">
+                @forelse($members as $member)
+                <tr class="hover:bg-sky-50/30 transition-colors">
+                    <td class="px-4 py-3 font-bold text-slate-900">{{ $member->name }}</td>
+                    <td class="px-4 py-3 text-slate-600">{{ $member->nim }}</td>
+                    <td class="px-4 py-3 text-slate-600">{{ $member->email ?? '-' }}</td>
+                    <td class="px-4 py-3 text-slate-600">{{ $member->phone ?? '-' }}</td>
+                    <td class="px-4 py-3 text-right">
+                        <div class="flex justify-end gap-2">
+                            <a href="{{ route('members.show', $member->id) }}" class="p-2 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </a>
+                            <a href="{{ route('members.edit', $member->id) }}" class="p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                </svg>
+                            </a>
+                            <form action="{{ route('members.destroy', $member->id) }}" method="POST" class="inline-block delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn-delete p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Hapus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="px-6 py-16 text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
+                            <svg class="h-8 w-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-base font-semibold text-slate-900 mb-1">
+                            {{ request('search') ? 'Anggota Tidak Ditemukan' : 'Data Kosong' }}
+                        </h3>
+                        <p class="text-sm text-slate-500 mb-4">
+                            {{ request('search') ? 'Tidak ada anggota yang cocok.' : 'Belum ada anggota yang ditambahkan.' }}
+                        </p>
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+    @if($members->hasPages())
+    <div class="px-6 py-4 border-t border-slate-200 bg-white">
+        {{ $members->links() }}
+    </div>
+    @endif
+</div>
+@endsection
+
+@stack('scripts')
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const form = this.closest('form');
+                
+                Swal.fire({
+                    title: 'Hapus Anggota?',
+                    text: "Data anggota ini akan dihapus permanen!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal',
+                    customClass: {
+                        popup: 'rounded-2xl',
+                        confirmButton: 'rounded-lg font-medium px-5',
+                        cancelButton: 'rounded-lg font-medium px-5'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+@endpush

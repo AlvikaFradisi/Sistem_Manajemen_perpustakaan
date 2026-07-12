@@ -9,8 +9,7 @@ class Borrowing extends Model
 {
     protected $fillable = [
         'book_id',
-        'member_name',
-        'member_nim',
+        'member_id',
         'borrow_date',
         'due_date',
         'return_date',
@@ -22,5 +21,11 @@ class Borrowing extends Model
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);
+    }
+
+    // Relasi: Setiap Peminjaman adalah milik 1 Anggota
+    public function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class);
     }
 }

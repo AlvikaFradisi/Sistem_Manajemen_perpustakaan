@@ -35,22 +35,17 @@
                 <div>
                     <h3 class="text-lg font-semibold text-slate-900 mb-4 pb-2 border-b border-slate-100">Informasi Peminjam</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="member_name" class="block text-sm font-medium text-slate-700 mb-1">Nama Peminjam <span class="text-sky-500">*</span></label>
-                            <input type="text" name="member_name" id="member_name" value="{{ old('member_name') }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('member_name') border-sky-500 @enderror" 
-                                placeholder="Nama lengkap" required>
-                            @error('member_name')
-                                <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label for="member_nim" class="block text-sm font-medium text-slate-700 mb-1">NIM / ID Anggota <span class="text-sky-500">*</span></label>
-                            <input type="text" name="member_nim" id="member_nim" value="{{ old('member_nim') }}" 
-                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('member_nim') border-sky-500 @enderror" 
-                                placeholder="Nomor Induk Mahasiswa / Anggota" required>
-                            @error('member_nim')
+                        <div class="md:col-span-2">
+                            <label for="member_id" class="block text-sm font-medium text-slate-700 mb-1">Pilih Anggota <span class="text-sky-500">*</span></label>
+                            <select name="member_id" id="member_id" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('member_id') border-sky-500 @enderror" required>
+                                <option value="">-- Pilih Anggota --</option>
+                                @foreach($members as $member)
+                                    <option value="{{ $member->id }}" {{ old('member_id') == $member->id ? 'selected' : '' }}>
+                                        {{ $member->name }} ({{ $member->nim }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('member_id')
                                 <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>
                             @enderror
                         </div>
@@ -88,7 +83,7 @@
 
                         <div>
                             <label for="due_date" class="block text-sm font-medium text-slate-700 mb-1">Tenggat Waktu (Jatuh Tempo) <span class="text-sky-500">*</span></label>
-                            <input type="date" name="due_date" id="due_date" value="{{ old('due_date', date('Y-m-d', strtotime('+7 days'))) }}" 
+                            <input type="date" name="due_date" id="due_date" value="{{ old('due_date', date('Y-m-d', strtotime('+3 days'))) }}" 
                                 class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('due_date') border-sky-500 @enderror" 
                                 required>
                             @error('due_date')
