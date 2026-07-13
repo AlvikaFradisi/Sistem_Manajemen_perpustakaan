@@ -45,6 +45,8 @@
                         <th class="px-5 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Anggota</th>
                         <th class="px-5 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Buku</th>
                         <th class="px-5 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tgl Pinjam</th>
+                        <th class="px-5 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Jatuh Tempo</th>
+                        <th class="px-5 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tgl Kembali</th>
                         <th class="px-5 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
                     </tr>
                 </thead>
@@ -52,13 +54,17 @@
                     @forelse($borrowings as $index => $b)
                     <tr class="hover:bg-slate-50 transition-colors">
                         <td class="px-5 py-4 text-sm text-slate-600">{{ $index + 1 }}</td>
-                        <td class="px-5 py-4 text-sm font-medium text-slate-800">{{ $b->member->name }}</td>
-                        <td class="px-5 py-4 text-sm text-slate-600">{{ $b->book->title }}</td>
+                        <td class="px-5 py-4 text-sm font-medium text-slate-800">{{ $b->member->name ?? 'Dihapus' }}</td>
+                        <td class="px-5 py-4 text-sm text-slate-600">{{ $b->book->title ?? 'Dihapus' }}</td>
                         <td class="px-5 py-4 text-sm text-slate-600">{{ \Carbon\Carbon::parse($b->borrow_date)->format('d M Y') }}</td>
+                        <td class="px-5 py-4 text-sm text-slate-600">{{ \Carbon\Carbon::parse($b->due_date)->format('d M Y') }}</td>
+                        <td class="px-5 py-4 text-sm text-slate-600">{{ $b->return_date ? \Carbon\Carbon::parse($b->return_date)->format('d M Y') : '-' }}</td>
                         <td class="px-5 py-4 text-sm">
                             <span class="px-3 py-1 rounded-full text-xs font-semibold
-                                {{ $b->status === 'Dipinjam' ? 'bg-amber-100 text-amber-700' : 
-                                  ($b->status === 'Dikembalikan' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700') }}">
+                                {{ $b->status === 'Dipinjam' ? 'bg-sky-100 text-sky-700' : 
+                                  ($b->status === 'Dikembalikan' ? 'bg-emerald-100 text-emerald-700' : 
+                                  ($b->status === 'Rusak' ? 'bg-orange-100 text-orange-700' : 
+                                  ($b->status === 'Hilang' ? 'bg-red-100 text-red-700' : 'bg-rose-100 text-rose-700'))) }}">
                                 {{ $b->status }}
                             </span>
                         </td>

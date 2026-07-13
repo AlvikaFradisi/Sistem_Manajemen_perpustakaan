@@ -29,9 +29,11 @@ class ReportController extends Controller
     {
         $query = Book::orderBy('created_at', 'desc');
 
-        if ($request->has('month') && $request->has('year')) {
-            $query->whereMonth('created_at', $request->month)
-                  ->whereYear('created_at', $request->year);
+        if ($request->has('start_date') && $request->has('end_date')) {
+            $query->whereBetween('created_at', [
+                $request->start_date . ' 00:00:00',
+                $request->end_date . ' 23:59:59'
+            ]);
         }
 
         $books = $query->get();

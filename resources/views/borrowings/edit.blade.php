@@ -125,3 +125,59 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const statusSelect = document.getElementById('status');
+    const returnDateInput = document.getElementById('return_date');
+    const fineInput = document.getElementById('fine');
+    
+    // Parse due date correctly
+    const dueDateStr = '{{ $borrowing->due_date }}';
+    const dueDate = new Date(dueDateStr);
+    
+    function calculateFine() {
+        if (!statusSelect || !fineInput) return;
+        
+        const status = statusSelect.value;
+        let totalFine = 0;
+
+        // Calculate late fine
+        let returnDate = returnDateInput.value ? new Date(returnDateInput.value) : new Date();
+        // Reset time parts
+        dueDate.setHours(0,0,0,0);
+        returnDate.setHours(0,0,0,0);
+        
+        if (returnDate > dueDate) {
+            const diffTime = Math.abs(returnDate - dueDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            totalFine += diffDays * 2000;
+        }
+
+        // Add damage/lost fine
+        if (status === 'Rusak') {
+            totalFine += 20000;
+        } else if (status === 'Hilang') {
+            totalFine += 50000;
+        }
+        
+        // If status is dikembalikan and returned on time, totalFine is 0
+        if (status === 'Dikembalikan' && returnDate <= dueDate) {
+            fineInput.value = 0;
+        } else if (['Terlambat', 'Rusak', 'Hilang'].includes(status) || totalFine > 0) {
+            fineInput.value = totalFine;
+        } else {
+            fineInput.value = 0;
+        }
+    }
+
+    if (statusSelect && {{ $borrowing->status === 'Dipinjam' ? 'true' : 'false' }}) {
+        statusSelect.addEventListener('change', calculateFine);
+        if (returnDateInput) {
+            returnDateInput.addEventListener('change', calculateFine);
+        }
+    }
+});
+</script>
+@endpush

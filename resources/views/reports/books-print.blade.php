@@ -4,10 +4,11 @@
 
 @section('content')
 <p style="margin-bottom: 20px; font-size: 14px;">
-    Bulan/Tahun: 
-    @if(request('month') || request('year'))
-        {{ request('month') ? date('F', mktime(0, 0, 0, request('month'), 10)) : 'Semua Bulan' }} 
-        {{ request('year') ? request('year') : 'Semua Tahun' }}
+    Periode: 
+    @if(request('start_date') || request('end_date'))
+        {{ request('start_date') ? \Carbon\Carbon::parse(request('start_date'))->format('d M Y') : 'Awal' }} 
+        s/d 
+        {{ request('end_date') ? \Carbon\Carbon::parse(request('end_date'))->format('d M Y') : 'Sekarang' }}
     @else
         Semua Waktu
     @endif

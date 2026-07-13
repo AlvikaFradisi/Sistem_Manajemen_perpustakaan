@@ -100,19 +100,26 @@ class BorrowingController extends Controller
 
             // Hitung denda jika denda belum diisi manual atau bernilai 0
             if (empty($validated['fine']) || $validated['fine'] == 0) {
-                if ($validated['status'] === 'Terlambat') {
-                    $returnDate = Carbon::parse($validated['return_date']);
-                    $dueDate = Carbon::parse($borrowing->due_date);
-                    
-                    if ($returnDate->gt($dueDate)) {
-                        $daysLate = $returnDate->diffInDays($dueDate);
-                        $finePerDay = 2000; // Denda Rp 2.000 per hari
-                        $validated['fine'] = $daysLate * $finePerDay;
-                    }
-                } elseif ($validated['status'] === 'Rusak') {
-                    $validated['fine'] = 20000; // Denda default rusak Rp 20.000
+                $totalFine = 0;
+                
+                // Hitung denda keterlambatan jika ada
+                $returnDate = Carbon::parse($validated['return_date']);
+                $dueDate = Carbon::parse($borrowing->due_date);
+                if ($returnDate->gt($dueDate)) {
+                    $daysLate = $returnDate->diffInDays($dueDate);
+                    $totalFine += $daysLate * 2000; // Denda Rp 2.000 per hari
+                }
+
+                // Tambahkan denda kerusakan atau kehilangan
+                if ($validated['status'] === 'Rusak') {
+                    $totalFine += 20000; // Denda default rusak Rp 20.000
                 } elseif ($validated['status'] === 'Hilang') {
-                    $validated['fine'] = 50000; // Denda default hilang Rp 50.000
+                    $totalFine += 50000; // Denda default hilang Rp 50.000
+                }
+                
+                // Hanya perbarui fine jika ada denda atau statusnya Terlambat/Rusak/Hilang
+                if ($totalFine > 0) {
+                    $validated['fine'] = $totalFine;
                 }
             }
         }

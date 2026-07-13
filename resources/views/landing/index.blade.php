@@ -288,7 +288,7 @@
                     </div>
                 </div>
                 
-                <div class="flex flex-wrap sm:flex-nowrap gap-3 w-full sm:w-auto">
+                <div class="flex flex-wrap gap-3 w-full sm:w-auto mt-4 sm:mt-0 justify-start sm:justify-end">
                     <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
                         <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Max Peminjaman</p>
                         <p class="text-sm font-medium text-white">3 Buku / Anggota</p>
@@ -298,8 +298,16 @@
                         <p class="text-sm font-medium text-white">Maksimal 3 Hari</p>
                     </div>
                     <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Denda Terlambat</p>
-                        <p class="text-sm font-bold text-red-400">Rp 2.000 / Hari</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Terlambat</p>
+                        <p class="text-sm font-bold text-rose-400">Rp 2.000 / Hari</p>
+                    </div>
+                    <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Rusak</p>
+                        <p class="text-sm font-bold text-orange-400">Rp 20.000</p>
+                    </div>
+                    <div class="bg-slate-800/50 px-4 py-3 rounded-xl flex-1 sm:flex-none border border-slate-700/50">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Hilang</p>
+                        <p class="text-sm font-bold text-red-500">Rp 50.000</p>
                     </div>
                 </div>
             </div>

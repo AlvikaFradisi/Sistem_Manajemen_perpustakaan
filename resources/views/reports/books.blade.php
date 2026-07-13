@@ -21,25 +21,12 @@
     <div class="bg-white p-5 shadow-sm rounded-xl border border-slate-200 mb-8">
         <form action="{{ route('reports.books') }}" method="GET" class="flex flex-col sm:flex-row gap-4 items-end">
             <div>
-                <label class="block text-sm font-medium mb-1">Bulan</label>
-                <select name="month" class="form-select w-full rounded-lg border-slate-200">
-                    <option value="">Semua Bulan</option>
-                    @for($i=1; $i<=12; $i++)
-                        <option value="{{ $i }}" {{ request('month') == $i ? 'selected' : '' }}>
-                            {{ date('F', mktime(0, 0, 0, $i, 10)) }}
-                        </option>
-                    @endfor
-                </select>
+                <label class="block text-sm font-medium mb-1">Tanggal Mulai (Masuk)</label>
+                <input type="date" name="start_date" value="{{ request('start_date') }}" class="form-input w-full rounded-lg border-slate-200">
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1">Tahun</label>
-                <select name="year" class="form-select w-full rounded-lg border-slate-200">
-                    <option value="">Semua Tahun</option>
-                    @php $currentYear = date('Y'); @endphp
-                    @for($y = $currentYear; $y >= $currentYear - 5; $y--)
-                        <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>{{ $y }}</option>
-                    @endfor
-                </select>
+                <label class="block text-sm font-medium mb-1">Tanggal Akhir (Masuk)</label>
+                <input type="date" name="end_date" value="{{ request('end_date') }}" class="form-input w-full rounded-lg border-slate-200">
             </div>
             <div>
                 <button type="submit" class="btn bg-white border-slate-200 hover:border-slate-300 text-slate-600 rounded-lg px-4 py-2">Filter</button>
