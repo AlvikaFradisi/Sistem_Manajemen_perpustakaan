@@ -1,13 +1,18 @@
 @extends('layouts.public')
 
 @section('content')
+    <!-- Fixed Background behind cards -->
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/pnp.png') }}');">
+        <div class="absolute inset-0 bg-[#fffbf7]/90 backdrop-blur-sm"></div>
+    </div>
+
     <!-- Hero Section -->
     <div class="relative overflow-hidden rounded-[2rem] p-8 sm:p-12 lg:p-16 mb-12 shadow-2xl"
         style="background: #ffbe91; box-shadow: 0 25px 50px -12px rgba(127,50,15,0.3);">
         <!-- Glow decorations -->
-        <div class="absolute -top-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-[100px]"
+        <div class="absolute -top-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-[100px] z-0"
             style="background: transparent"></div>
-        <div class="absolute -bottom-24 -left-24 w-[25rem] h-[25rem] rounded-full blur-[80px]"
+        <div class="absolute -bottom-24 -left-24 w-[25rem] h-[25rem] rounded-full blur-[80px] z-0"
             style="background: transparent"></div>
 
         <div class="relative z-10 max-w-3xl">
