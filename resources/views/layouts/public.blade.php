@@ -111,6 +111,8 @@
                         class="text-sm font-semibold text-sky-900 hover:text-sky-600 transition-colors">Beranda</a>
                     <a href="#katalog"
                         class="text-sm font-semibold text-sky-900 hover:text-sky-600 transition-colors">Katalog Buku</a>
+                    <a href="#informasi"
+                        class="text-sm font-semibold text-sky-900 hover:text-sky-600 transition-colors">Informasi</a>
 
                     <div class="w-px h-6 bg-sky-200"></div>
 
@@ -149,6 +151,7 @@
                             class="px-4 py-2 text-sm font-semibold text-sky-900 hover:bg-sky-50">Beranda</a>
                         <a href="#katalog" class="px-4 py-2 text-sm font-semibold text-sky-900 hover:bg-sky-50">Katalog
                             Buku</a>
+                        <a href="#informasi" class="px-4 py-2 text-sm font-semibold text-sky-900 hover:bg-sky-50">Informasi</a>
                         <div class="border-t border-sky-50 my-1"></div>
                         <a href="{{ route('dashboard') }}"
                             class="px-4 py-2 text-sm font-bold text-sky-600 hover:bg-sky-50 flex items-center justify-between">
