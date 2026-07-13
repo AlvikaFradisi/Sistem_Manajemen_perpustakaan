@@ -70,11 +70,11 @@
         .logo-icon { background: transparent; }
 
         /* Section label */
-        .sidebar-section-label { color: rgba(77, 51, 32, 0.5); }
+        .sidebar-section-label { color: rgba(77, 51, 32, 0.8); font-weight: 800; }
 
         /* Sidebar inactive nav text */
-        .nav-icon { color: rgba(77, 51, 32, 0.4); }
-        .nav-label { color: rgba(77, 51, 32, 0.7); font-size: 0.875rem; }
+        .nav-icon { color: rgba(77, 51, 32, 0.7); }
+        .nav-label { color: rgba(77, 51, 32, 0.9); font-size: 0.9rem; font-weight: 500; }
 
         /* Sidebar status mini card */
         .sidebar-status-card {
