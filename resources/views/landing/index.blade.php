@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- Fixed Background behind cards -->
-    <div class="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/pnp.png') }}');">
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{{ asset('images/pnp.png') }}');">
         <div class="absolute inset-0 bg-[#fffbf7]/90 backdrop-blur-sm"></div>
     </div>
 
@@ -23,7 +24,7 @@
                 Katalog Digital Publik
             </span>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight text-slate-900">
-                Eksplorasi Jendela Dunia Anda di Sini.
+                Eksplorasi Jendela Dunia Anda Di Politeknik Negeri Padang.
             </h1>
             <p class="text-slate-800 text-lg sm:text-xl font-medium mb-8 max-w-2xl leading-relaxed">
                 Cari koleksi buku terbaru, cek ketersediaan stok secara real-time, dan temukan referensi terbaik untuk
