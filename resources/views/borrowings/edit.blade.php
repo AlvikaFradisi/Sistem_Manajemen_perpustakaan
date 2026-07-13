@@ -64,6 +64,8 @@
                                 <option value="Dipinjam" {{ old('status', $borrowing->status) == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                                 <option value="Dikembalikan" {{ old('status', $borrowing->status) == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
                                 <option value="Terlambat" {{ old('status', $borrowing->status) == 'Terlambat' ? 'selected' : '' }}>Terlambat</option>
+                                <option value="Rusak" {{ old('status', $borrowing->status) == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                                <option value="Hilang" {{ old('status', $borrowing->status) == 'Hilang' ? 'selected' : '' }}>Hilang</option>
                             </select>
                             @if($borrowing->status !== 'Dipinjam')
                                 <input type="hidden" name="status" value="{{ $borrowing->status }}">
@@ -88,14 +90,14 @@
                         </div>
 
                         <div>
-                            <label for="fine" class="block text-sm font-medium text-slate-700 mb-1">Denda Keterlambatan (Rp)</label>
+                            <label for="fine" class="block text-sm font-medium text-slate-700 mb-1">Nominal Denda (Rp)</label>
                             <input type="number" name="fine" id="fine" value="{{ old('fine', $borrowing->fine) }}" min="0" 
                                 class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all @error('fine') border-sky-500 @enderror" 
                                 {{ $borrowing->status !== 'Dipinjam' ? 'disabled' : '' }}>
                             @if($borrowing->status !== 'Dipinjam')
                                 <input type="hidden" name="fine" value="{{ $borrowing->fine }}">
                             @else
-                                <p class="mt-1 text-xs text-slate-500">Biarkan kosong untuk menghitung denda otomatis jika terlambat.</p>
+                                <p class="mt-1 text-xs text-slate-500">Biarkan 0 untuk denda otomatis (Terlambat: 2000/hr, Rusak: 20rb, Hilang: 50rb).</p>
                             @endif
                             @error('fine')
                                 <p class="mt-1 text-sm text-sky-500">{{ $message }}</p>

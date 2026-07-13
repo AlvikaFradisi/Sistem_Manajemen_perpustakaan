@@ -12,12 +12,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                }
+            theme: { 
+                extend: { 
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        sky: {
+                            50: '#fffbf7',
+                            100: '#fff4eb',
+                            200: '#ffe8d6',
+                            300: '#ffdbbd',
+                            400: '#ffcda3',
+                            500: '#ffbe91',
+                            600: '#e6a67a',
+                            700: '#b37f59',
+                            800: '#80593b',
+                            900: '#4d3320',
+                            950: '#332012',
+                        }
+                    }
+                } 
             }
         }
     </script>
@@ -31,10 +44,8 @@
         
         <div class="p-8 sm:p-10 relative z-10">
             <div class="text-center mb-10">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-50 text-sky-600 mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+                <div class="inline-flex items-center justify-center w-40 h-40 mb-6 bg-transparent">
+                    <img src="{{ asset('images/logopnp.png') }}" alt="Logo" class="w-full h-full object-contain mix-blend-multiply scale-[1.35]">
                 </div>
                 <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Login Admin</h1>
                 <p class="text-slate-500 mt-2 text-sm">Sistem Manajemen Perpustakaan</p>

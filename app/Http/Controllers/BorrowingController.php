@@ -82,29 +82,37 @@ class BorrowingController extends Controller
     public function update(Request $request, Borrowing $borrowing)
     {
         $validated = $request->validate([
-            'status' => 'required|in:Dipinjam,Dikembalikan,Terlambat',
+            'status' => 'required|in:Dipinjam,Dikembalikan,Terlambat,Rusak,Hilang',
             'return_date' => 'nullable|date',
             'fine' => 'nullable|numeric|min:0',
         ]);
 
-        // Jika status berubah menjadi Dikembalikan atau Terlambat, dan sebelumnya Dipinjam
-        if ($borrowing->status === 'Dipinjam' && in_array($validated['status'], ['Dikembalikan', 'Terlambat'])) {
-            // Kembalikan stok buku
-            $borrowing->book->increment('stock');
+        // Jika status berubah dari Dipinjam ke status akhir
+        if ($borrowing->status === 'Dipinjam' && in_array($validated['status'], ['Dikembalikan', 'Terlambat', 'Rusak', 'Hilang'])) {
+            // Kembalikan stok buku KECUALI jika Hilang
+            if ($validated['status'] !== 'Hilang') {
+                $borrowing->book->increment('stock');
+            }
             
             if (empty($validated['return_date'])) {
                 $validated['return_date'] = Carbon::now()->toDateString();
             }
 
-            // Hitung denda jika terlambat dan denda belum diisi manual atau bernilai 0
-            if ($validated['status'] === 'Terlambat' && (empty($validated['fine']) || $validated['fine'] == 0)) {
-                $returnDate = Carbon::parse($validated['return_date']);
-                $dueDate = Carbon::parse($borrowing->due_date);
-                
-                if ($returnDate->gt($dueDate)) {
-                    $daysLate = $returnDate->diffInDays($dueDate);
-                    $finePerDay = 2000; // Denda Rp 2.000 per hari
-                    $validated['fine'] = $daysLate * $finePerDay;
+            // Hitung denda jika denda belum diisi manual atau bernilai 0
+            if (empty($validated['fine']) || $validated['fine'] == 0) {
+                if ($validated['status'] === 'Terlambat') {
+                    $returnDate = Carbon::parse($validated['return_date']);
+                    $dueDate = Carbon::parse($borrowing->due_date);
+                    
+                    if ($returnDate->gt($dueDate)) {
+                        $daysLate = $returnDate->diffInDays($dueDate);
+                        $finePerDay = 2000; // Denda Rp 2.000 per hari
+                        $validated['fine'] = $daysLate * $finePerDay;
+                    }
+                } elseif ($validated['status'] === 'Rusak') {
+                    $validated['fine'] = 20000; // Denda default rusak Rp 20.000
+                } elseif ($validated['status'] === 'Hilang') {
+                    $validated['fine'] = 50000; // Denda default hilang Rp 50.000
                 }
             }
         }

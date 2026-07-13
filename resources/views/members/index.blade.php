@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
-     style="background: #0c4a6e; box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8"
+     style="background: #ffbe91; box-shadow: 0 20px 60px -10px rgba(127,50,15,0.3);">
     <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: transparent"></div>
     <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: transparent"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Anggota Perpustakaan</h1>
-            <p class="text-sky-200/70 text-base font-light max-w-xl">Kelola data anggota yang terdaftar di perpustakaan Anda.</p>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2 text-slate-900">Anggota Perpustakaan</h1>
+            <p class="text-slate-800 text-base font-medium max-w-xl">Kelola data anggota yang terdaftar di perpustakaan Anda.</p>
         </div>
-        <a href="{{ route('members.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-sky-900 bg-gradient-to-r from-sky-200 to-sky-300 rounded-xl shadow-lg hover:from-sky-300 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all hover:-translate-y-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <a href="{{ route('members.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-sky-950 bg-white rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.5)] border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
             Tambah Anggota Baru
@@ -85,18 +85,34 @@
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                 </svg>
-                            </a>
-                            <a href="{{ route('members.edit', $member->id) }}" class="p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        <div class="flex items-center justify-end gap-2">
+                            <a href="{{ route('members.print-card', $member) }}" target="_blank"
+                               class="p-2 text-slate-400 hover:text-sky-500 hover:bg-sky-50 rounded-lg transition-colors"
+                               title="Cetak Kartu">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                                 </svg>
                             </a>
-                            <form action="{{ route('members.destroy', $member->id) }}" method="POST" class="inline-block delete-form">
+                            <a href="{{ route('members.edit', $member) }}"
+                               class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors"
+                               title="Edit Member">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </a>
+                            <form action="{{ route('members.destroy', $member) }}" method="POST"
+                                  onsubmit="return confirm('Are you sure you want to delete this member?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn-delete p-2 text-sky-600 hover:bg-sky-50 rounded-md transition-colors border border-transparent hover:border-sky-100" title="Hapus">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                <button type="submit"
+                                        class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                        title="Delete Member">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                 </button>
                             </form>

@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
-     style="background: #0c4a6e; box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8"
+     style="background: #ffbe91; box-shadow: 0 20px 60px -10px rgba(127,50,15,0.3);">
     <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: transparent"></div>
     <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: transparent"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Koleksi Buku</h1>
-            <p class="text-sky-200/70 text-base font-light max-w-xl">Kelola data buku yang tersedia di perpustakaan Anda.</p>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2 text-slate-900">Koleksi Buku</h1>
+            <p class="text-slate-800 text-base font-medium max-w-xl">Kelola data buku yang tersedia di perpustakaan Anda.</p>
         </div>
-        <a href="{{ route('books.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-sky-900 bg-gradient-to-r from-sky-200 to-sky-300 rounded-xl shadow-lg hover:from-sky-300 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all hover:-translate-y-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <a href="{{ route('books.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-sky-950 bg-white rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.5)] border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
             Tambah Buku Baru

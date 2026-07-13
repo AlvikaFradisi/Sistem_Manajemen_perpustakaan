@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8 text-white"
-     style="background: #0c4a6e; box-shadow: 0 20px 60px -10px rgba(14,165,233,0.5);">
+<div class="relative overflow-hidden rounded-2xl p-8 sm:p-10 mb-8"
+     style="background: #ffbe91; box-shadow: 0 20px 60px -10px rgba(127,50,15,0.3);">
     <div class="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-3xl" style="background: transparent"></div>
     <div class="absolute -bottom-16 -left-8 w-64 h-64 rounded-full blur-3xl" style="background: transparent"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2">Data Peminjaman</h1>
-            <p class="text-sky-200/70 text-base font-light max-w-xl">Kelola data peminjaman dan pengembalian buku.</p>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-2 text-slate-900">Data Peminjaman</h1>
+            <p class="text-slate-800 text-base font-medium max-w-xl">Kelola data peminjaman dan pengembalian buku.</p>
         </div>
-        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-sky-900 bg-gradient-to-r from-sky-200 to-sky-300 rounded-xl shadow-lg hover:from-sky-300 hover:to-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all hover:-translate-y-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <a href="{{ route('borrowings.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-sky-950 bg-white rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.5)] border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-sky-600" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
             Tambah Peminjaman
@@ -57,6 +57,8 @@
                 <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                 <option value="Dikembalikan" {{ request('status') == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
                 <option value="Terlambat" {{ request('status') == 'Terlambat' ? 'selected' : '' }}>Terlambat</option>
+                <option value="Rusak" {{ request('status') == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                <option value="Hilang" {{ request('status') == 'Hilang' ? 'selected' : '' }}>Hilang</option>
             </select>
 
             <div class="relative w-full md:w-64">
@@ -127,11 +129,30 @@
                             <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-100">
                                 <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Terlambat
                             </span>
+                        @elseif($borrowing->status === 'Rusak')
+                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-orange-50 text-orange-700 border border-orange-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span> Rusak
+                            </span>
+                        @elseif($borrowing->status === 'Hilang')
+                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-bold bg-red-50 text-red-700 border border-red-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Hilang
+                            </span>
                         @endif
                         
-                        @if($borrowing->status !== 'Dipinjam')
-                            <div class="text-[10px] {{ $borrowing->fine > 0 ? 'text-red-500 font-bold' : 'text-slate-400' }} mt-1">
-                                Denda: Rp{{ number_format($borrowing->fine, 0, ',', '.') }}
+                        @php
+                            $calculatedFine = $borrowing->fine;
+                            if (empty($borrowing->return_date)) {
+                                $dueDate = \Carbon\Carbon::parse($borrowing->due_date)->startOfDay();
+                                $now = \Carbon\Carbon::now()->startOfDay();
+                                if ($now->gt($dueDate)) {
+                                    $calculatedFine = $now->diffInDays($dueDate) * 2000;
+                                }
+                            }
+                        @endphp
+                        
+                        @if($borrowing->status !== 'Dipinjam' || $calculatedFine > 0)
+                            <div class="text-[10px] {{ $calculatedFine > 0 ? 'text-red-500 font-bold' : 'text-slate-400' }} mt-1">
+                                Denda: Rp{{ number_format($calculatedFine, 0, ',', '.') }}
                             </div>
                         @endif
                     </td>

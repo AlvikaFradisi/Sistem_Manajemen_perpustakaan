@@ -11,7 +11,26 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+            theme: { 
+                extend: { 
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        sky: {
+                            50: '#fffbf7',
+                            100: '#fff4eb',
+                            200: '#ffe8d6',
+                            300: '#ffdbbd',
+                            400: '#ffcda3',
+                            500: '#ffbe91',
+                            600: '#e6a67a',
+                            700: '#b37f59',
+                            800: '#80593b',
+                            900: '#4d3320',
+                            950: '#332012',
+                        }
+                    }
+                } 
+            }
         }
     </script>
     <style>
@@ -22,17 +41,17 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #f0f9ff;
+            background: #fffbf7;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #7dd3fc;
+            background: #ffdbbd;
             border-radius: 9999px;
-            border: 2px solid #f0f9ff;
+            border: 2px solid #fffbf7;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #38bdf8;
+            background: #ffcda3;
         }
 
         /* Navbar gradient */
@@ -45,8 +64,8 @@
 
         /* Content background (teal tinted grid) */
         body {
-            background-color: #f0f9ff;
-            background-image: radial-gradient(circle, #bae6fd 1px, transparent 1px);
+            background-color: #fffbf7;
+            background-image: radial-gradient(circle, #ffe8d6 1px, transparent 1px);
             background-size: 24px 24px;
         }
 
@@ -74,16 +93,11 @@
     <!-- ===== TOP NAVBAR ===== -->
     <nav class="navbar-blur fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-28">
                 <!-- Logo -->
                 <a href="{{ route('landing.index') }}" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
-                        style="background: #0ea5e9;">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
+                    <div class="w-24 h-24 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform bg-transparent">
+                        <img src="{{ asset('images/logopnp.png') }}" alt="Logo" class="w-full h-full object-contain mix-blend-multiply scale-[1.35]">
                     </div>
                     <div>
                         <span class="text-xl font-bold tracking-tight text-sky-950">Perpustakaan PNP</span>
@@ -101,8 +115,8 @@
                     <div class="w-px h-6 bg-sky-200"></div>
 
                     <a href="{{ route('dashboard') }}"
-                        class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
-                        style="background: #0ea5e9;">
+                        class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-slate-900 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
+                        style="background: #ffbe91;">
                         Login Admin
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2.5">

@@ -2,26 +2,26 @@
 
 @section('content')
     <!-- Hero Section -->
-    <div class="relative overflow-hidden rounded-[2rem] p-8 sm:p-12 lg:p-16 mb-12 text-white shadow-2xl"
-         style="background: #0c4a6e; box-shadow: 0 25px 50px -12px rgba(14,165,233,0.4);">
+    <div class="relative overflow-hidden rounded-[2rem] p-8 sm:p-12 lg:p-16 mb-12 shadow-2xl"
+         style="background: #ffbe91; box-shadow: 0 25px 50px -12px rgba(127,50,15,0.3);">
         <!-- Glow decorations -->
         <div class="absolute -top-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-[100px]" style="background: transparent"></div>
         <div class="absolute -bottom-24 -left-24 w-[25rem] h-[25rem] rounded-full blur-[80px]" style="background: transparent"></div>
         
         <div class="relative z-10 max-w-3xl">
             <span class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold tracking-widest uppercase rounded-full border mb-6"
-                  style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #f0f9ff;">
-                <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                  style="background: rgba(77, 51, 32, 0.1); border-color: rgba(77, 51, 32, 0.2); color: #4d3320;">
+                <span class="w-2 h-2 rounded-full bg-sky-600 animate-pulse"></span>
                 Katalog Digital Publik
             </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight text-white">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight text-slate-900">
                 Eksplorasi Jendela Dunia Anda di Sini.
             </h1>
-            <p class="text-sky-100/80 text-lg sm:text-xl font-light mb-8 max-w-2xl leading-relaxed">
+            <p class="text-slate-800 text-lg sm:text-xl font-medium mb-8 max-w-2xl leading-relaxed">
                 Cari koleksi buku terbaru, cek ketersediaan stok secara real-time, dan temukan referensi terbaik untuk kebutuhan belajar Anda tanpa harus mendaftar akun.
             </p>
             
-            <a href="#katalog" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-sky-950 bg-white rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-105 transition-transform duration-300">
+            <a href="#katalog" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-sky-950 bg-white rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.5)] hover:scale-105 transition-transform duration-300 border border-slate-100">
                 Lihat Koleksi Buku
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -30,8 +30,8 @@
         </div>
         
         <!-- Abstract Book Illustration (CSS generated) -->
-        <div class="hidden lg:block absolute right-16 bottom-0 opacity-80 mix-blend-overlay">
-            <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="hidden lg:block absolute right-16 bottom-0 opacity-40 mix-blend-multiply">
+            <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="#7f320f" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>

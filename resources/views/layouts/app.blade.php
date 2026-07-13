@@ -9,28 +9,47 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+            theme: { 
+                extend: { 
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        sky: {
+                            50: '#fffbf7',
+                            100: '#fff4eb',
+                            200: '#ffe8d6',
+                            300: '#ffdbbd',
+                            400: '#ffcda3',
+                            500: '#ffbe91',
+                            600: '#e6a67a',
+                            700: '#b37f59',
+                            800: '#80593b',
+                            900: '#4d3320',
+                            950: '#332012',
+                        }
+                    }
+                } 
+            }
         }
     </script>
     <style>
         /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #0c4a6e; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+        ::-webkit-scrollbar-thumb { background: #4d3320; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffbe91; }
 
         /* Sidebar background */
         .sidebar-bg {
-            background: #0c4a6e;
+            background: #ffffff;
         }
 
         /* Active nav item */
         .nav-active {
-            background: rgba(14,165,233,0.15);
-            border-left: 3px solid #0ea5e9 !important;
+            background: rgba(255, 190, 145, 0.15);
+            border-left: 3px solid #ffbe91 !important;
         }
-        .nav-active .nav-icon { color: #7dd3fc !important; }
-        .nav-active .nav-label { color: #bae6fd !important; font-weight: 700; }
+        .nav-active .nav-icon { color: #ffbe91 !important; }
+        .nav-active .nav-label { color: #b37f59 !important; font-weight: 700; }
 
         /* Nav hover */
         .nav-item {
@@ -38,54 +57,51 @@
             transition: all 0.18s ease;
         }
         .nav-item:hover {
-            background: rgba(147,197,253,0.07);
-            border-left: 3px solid rgba(14,165,233,0.35);
+            background: rgba(255, 190, 145, 0.05);
+            border-left: 3px solid rgba(255, 190, 145, 0.3);
         }
-        .nav-item:hover .nav-icon { color: #7dd3fc !important; }
-        .nav-item:hover .nav-label { color: #bae6fd !important; }
+        .nav-item:hover .nav-icon { color: #ffbe91 !important; }
+        .nav-item:hover .nav-label { color: #b37f59 !important; }
 
         /* Logo gradient */
         .logo-text {
-            background: #0ea5e9;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #4d3320;
         }
-        .logo-icon { background: #0ea5e9; }
+        .logo-icon { background: transparent; }
 
         /* Section label */
-        .sidebar-section-label { color: rgba(186,230,253,0.5); }
+        .sidebar-section-label { color: rgba(77, 51, 32, 0.5); }
 
         /* Sidebar inactive nav text */
-        .nav-icon { color: rgba(186,230,253,0.6); }
-        .nav-label { color: rgba(186,230,253,0.85); font-size: 0.875rem; }
+        .nav-icon { color: rgba(77, 51, 32, 0.4); }
+        .nav-label { color: rgba(77, 51, 32, 0.7); font-size: 0.875rem; }
 
         /* Sidebar status mini card */
         .sidebar-status-card {
-            background: rgba(14,165,233,0.07);
-            border: 1px solid rgba(14,165,233,0.15);
+            background: #fffbf7;
+            border: 1px solid rgba(255,190,145,0.3);
         }
-        .status-label { color: rgba(186,230,253,0.7); }
+        .status-label { color: rgba(77, 51, 32, 0.8); }
 
         /* Sidebar profile card */
         .sidebar-profile {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: #fffbf7;
+            border: 1px solid rgba(255,190,145,0.2);
             transition: background 0.2s;
         }
-        .sidebar-profile:hover { background: rgba(255,255,255,0.08); }
+        .sidebar-profile:hover { background: #ffe8d6; }
 
         /* Topbar dark */
         .topbar-dark {
-            background: #0c4a6e;
-            border-bottom: 1px solid rgba(14,165,233,0.18);
-            box-shadow: 0 1px 0 rgba(14,165,233,0.07), 0 4px 24px rgba(0,0,0,0.35);
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
         }
 
         /* Content background (teal tinted grid) */
         .content-bg {
-            background-color: #f0f9ff;
-            background-image: radial-gradient(circle, #bae6fd 1px, transparent 1px);
+            background-color: #fffbf7;
+            background-image: radial-gradient(circle, #ffe8d6 1px, transparent 1px);
             background-size: 24px 24px;
         }
 
@@ -99,13 +115,13 @@
 
         /* Date chip in topbar */
         .topbar-chip {
-            background: rgba(14,165,233,0.08);
-            border: 1px solid rgba(14,165,233,0.15);
-            color: rgba(186,230,253,0.9);
+            background: rgba(255,255,255,0.5);
+            border: 1px solid rgba(127,50,15,0.1);
+            color: rgba(77, 51, 32, 0.9);
         }
 
         /* Topbar divider */
-        .topbar-divider { background: rgba(14,165,233,0.15); }
+        .topbar-divider { background: rgba(127,50,15,0.15); }
     </style>
 </head>
 <body class="font-sans antialiased overflow-hidden" x-data="{ sidebarOpen: false }">
@@ -129,16 +145,14 @@
            class="sidebar-bg fixed inset-y-0 left-0 z-30 w-64 transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0 flex flex-col border-r border-white/5 shadow-2xl">
 
         <!-- Logo -->
-        <div class="flex items-center gap-3 px-5 h-20 border-b border-white/5 flex-shrink-0">
+        <div class="flex items-center gap-3 px-5 h-24 border-b border-white/5 flex-shrink-0">
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3 group">
-                <div class="logo-icon w-9 h-9 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+                <div class="logo-icon w-20 h-20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform bg-transparent">
+                    <img src="{{ asset('images/logopnp.png') }}" alt="Logo" class="w-full h-full object-contain mix-blend-multiply scale-[1.35]">
                 </div>
                 <div>
                     <span class="logo-text text-lg font-bold tracking-tight">Perpustakaan PNP</span>
-                    <p class="text-[10px] -mt-0.5 font-medium" style="color: rgba(186,230,253,0.6);">Library Management</p>
+                    <p class="text-[10px] -mt-0.5 font-medium" style="color: rgba(77, 51, 32, 0.7);">Library Management</p>
                 </div>
             </a>
         </div>
@@ -184,17 +198,44 @@
             </a>
 
             <div class="my-4 border-t border-white/5"></div>
+            <p class="sidebar-section-label text-[10px] px-3 uppercase font-bold tracking-widest mb-3">Laporan</p>
+
+            <a href="{{ route('reports.borrowings') }}"
+               class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('reports.borrowings') ? 'nav-active' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 nav-icon {{ request()->routeIs('reports.borrowings') ? '!text-sky-300' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span class="nav-label {{ request()->routeIs('reports.borrowings') ? 'nav-active-label' : '' }}">Peminjaman</span>
+            </a>
+
+            <a href="{{ route('reports.books') }}"
+               class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('reports.books') ? 'nav-active' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 nav-icon {{ request()->routeIs('reports.books') ? '!text-sky-300' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span class="nav-label {{ request()->routeIs('reports.books') ? 'nav-active-label' : '' }}">Buku Masuk</span>
+            </a>
+
+            <a href="{{ route('reports.fines') }}"
+               class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('reports.fines') ? 'nav-active' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 nav-icon {{ request()->routeIs('reports.fines') ? '!text-sky-300' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="nav-label {{ request()->routeIs('reports.fines') ? 'nav-active-label' : '' }}">Keuangan Denda</span>
+            </a>
+
+            <div class="my-4 border-t border-white/5"></div>
             <p class="sidebar-section-label text-[10px] px-3 uppercase font-bold tracking-widest mb-3">Sistem</p>
 
             <div class="mx-2 p-3 rounded-xl sidebar-status-card">
-                <p class="text-[10px] font-bold uppercase tracking-wider mb-2" style="color: #7dd3fc;">Status Sistem</p>
+                <p class="text-[10px] font-bold uppercase tracking-wider mb-2" style="color: #7f320f;">Status Sistem</p>
                 <div class="flex items-center gap-2 mb-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
-                    <span class="text-xs" style="color: rgba(186,230,253,0.75);">Database Terhubung</span>
+                    <span class="text-xs" style="color: rgba(77, 51, 32, 0.9);">Database Terhubung</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 badge-pulse flex-shrink-0"></span>
-                    <span class="text-xs" style="color: rgba(186,230,253,0.75);">Server Aktif</span>
+                    <span class="text-xs" style="color: rgba(77, 51, 32, 0.9);">Server Aktif</span>
                 </div>
             </div>
         </nav>
@@ -202,18 +243,18 @@
         <!-- Profile Footer -->
         <div class="p-4 border-t border-white/5 flex-shrink-0">
             <div class="sidebar-profile flex items-center gap-3 p-3 rounded-xl cursor-pointer">
-                <div class="h-9 w-9 rounded-xl flex-shrink-0 flex items-center justify-center font-bold text-xs text-white shadow-md"
-                     style="background: #0ea5e9;">
+                <div class="h-9 w-9 rounded-xl flex-shrink-0 flex items-center justify-center font-bold text-xs text-slate-800 shadow-md"
+                     style="background: #ffbe91;">
                     {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}{{ strtoupper(substr(Auth::user()->name ?? 'U', 1, 1)) }}
                 </div>
                 <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold truncate" style="color: #bae6fd;">{{ Auth::user()->name ?? 'Admin Utama' }}</p>
-                    <p class="text-[11px] truncate" style="color: rgba(186,230,253,0.75);">Pustakawan</p>
+                    <p class="text-sm font-bold truncate" style="color: #4d3320;">{{ Auth::user()->name ?? 'Admin Utama' }}</p>
+                    <p class="text-[11px] font-medium truncate" style="color: rgba(77, 51, 32, 0.8);">Pustakawan</p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}" class="flex-shrink-0">
                     @csrf
-                    <button type="submit" class="p-1 hover:bg-white/10 rounded-lg transition-colors group/logout" title="Logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" style="color: rgba(186,230,253,0.5)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <button type="submit" class="p-1 hover:bg-black/5 rounded-lg transition-colors group/logout" title="Logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" style="color: rgba(77, 51, 32, 0.6)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
                     </button>
@@ -229,7 +270,7 @@
         <header class="topbar-dark h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8 z-10 flex-shrink-0">
 
             <!-- Mobile hamburger -->
-            <button @click="sidebarOpen = true" class="p-2 rounded-lg transition-colors" style="color: rgba(186,230,253,0.7);">
+            <button @click="sidebarOpen = true" class="p-2 rounded-lg transition-colors" style="color: rgba(77, 51, 32, 0.8);">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -237,8 +278,8 @@
 
             <!-- Breadcrumb -->
             <div class="hidden lg:flex items-center gap-2 text-sm">
-                <span class="font-medium" style="color: rgba(186,230,253,0.75);">Perpustakaan PNP</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" style="color: rgba(14,165,233,0.6)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <span class="font-bold" style="color: rgba(77, 51, 32, 0.9);">Perpustakaan PNP</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" style="color: rgba(127, 50, 15, 0.6)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
                 <span class="font-bold text-sky-500">
@@ -254,14 +295,14 @@
             <div class="flex items-center gap-2">
                 <!-- Date chip -->
                 <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium topbar-chip">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" style="color:#0ea5e9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" style="color:#c74a06" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     {{ \Carbon\Carbon::now()->translatedFormat('d M Y') }}
                 </div>
 
                 <!-- Notif -->
-                <button class="relative p-2 rounded-lg transition-colors" style="color: rgba(186,230,253,0.7);">
+                <button class="relative p-2 rounded-lg transition-colors" style="color: rgba(77, 51, 32, 0.8);">
                     @if(isset($overdueCount) && $overdueCount > 0)
                     <span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-sky-500 badge-pulse"></span>
                     @endif
@@ -276,12 +317,12 @@
                 <div class="relative pl-1" x-data="{ dropdownOpen: false }">
                     <div @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="flex items-center gap-2.5 cursor-pointer group">
                         <div class="h-8 w-8 rounded-lg flex items-center justify-center font-bold text-xs text-white shadow-md group-hover:scale-105 transition-transform"
-                             style="background: #0ea5e9;">
+                             style="background: #e6a67a;">
                             {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}{{ strtoupper(substr(Auth::user()->name ?? 'U', 1, 1)) }}
                         </div>
                         <div class="hidden sm:block">
-                            <p class="text-xs font-semibold leading-tight" style="color: #bae6fd;">{{ Auth::user()->name ?? 'Admin Utama' }}</p>
-                            <p class="text-[10px]" style="color: rgba(186,230,253,0.75);">Pustakawan</p>
+                            <p class="text-xs font-bold leading-tight" style="color: #4d3320;">{{ Auth::user()->name ?? 'Admin Utama' }}</p>
+                            <p class="text-[10px] font-medium" style="color: rgba(77, 51, 32, 0.8);">Pustakawan</p>
                         </div>
                     </div>
                     
@@ -318,11 +359,11 @@
                         title: 'Berhasil!',
                         text: '{{ session('success') }}',
                         icon: 'success',
-                        confirmButtonColor: '#0ea5e9',
+                        confirmButtonColor: '#ffbe91',
                         customClass: {
-                            popup: 'rounded-2xl shadow-2xl border border-sky-100',
+                            popup: 'rounded-2xl shadow-2xl border border-orange-100',
                             title: 'text-lg font-bold text-slate-800',
-                            confirmButton: 'px-6 py-2.5 text-sm font-semibold rounded-xl'
+                            confirmButton: 'px-6 py-2.5 text-sm font-semibold rounded-xl text-slate-900'
                         },
                         buttonsStyling: false,
                     });

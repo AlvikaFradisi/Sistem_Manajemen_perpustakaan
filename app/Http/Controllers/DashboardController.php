@@ -53,7 +53,7 @@ class DashboardController extends Controller
         }
 
         // 4. Transaksi Terakhir
-        $recentBorrowings = Borrowing::with('book')
+        $recentBorrowings = Borrowing::with(['book', 'member'])
             ->latest()
             ->take(5)
             ->get();

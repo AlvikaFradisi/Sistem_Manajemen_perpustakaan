@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
+    public function printCard(Member $member)
+    {
+        return view('members.print-card', compact('member'));
+    }
     public function index(Request $request)
     {
         $search = $request->input('search');
