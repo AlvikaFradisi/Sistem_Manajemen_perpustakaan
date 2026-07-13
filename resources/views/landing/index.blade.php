@@ -94,7 +94,7 @@
             <div>
                 <h3 class="font-bold text-slate-800 text-lg mb-1">Pinjam Langsung</h3>
                 <p class="text-sm text-slate-500 leading-relaxed">Temukan buku yang tersedia lalu kunjungi perpustakaan
-                    fisik kami.</p>
+                    fisik kami di politeknik negeri padang.</p>
             </div>
         </div>
     </div>
